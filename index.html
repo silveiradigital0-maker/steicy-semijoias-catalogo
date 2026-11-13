@@ -331,6 +331,92 @@ a { color: inherit; }
 }
 .wa-link:hover { color: var(--gold-text); }
 
+/* ---------- Sacolinha ---------- */
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.bag-btn {
+  position: relative; appearance: none; cursor: pointer;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--white); border: 1px solid var(--lilac-soft); color: var(--lilac-deep);
+  display: grid; place-items: center;
+  transition: background var(--ease), border-color var(--ease), transform var(--ease);
+}
+.bag-btn:hover { background: var(--lilac-tint); border-color: var(--gold); transform: scale(1.04); }
+.bag-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+.bag-count {
+  position: absolute; top: -5px; right: -5px; min-width: 20px; height: 20px; padding: 0 5px;
+  border-radius: 999px; background: var(--gold); color: #3B2F47;
+  font-size: 0.7rem; font-weight: 700; display: grid; place-items: center;
+}
+.bag-count[hidden] { display: none; }
+.bag-count.bump { animation: bump 0.4s ease; }
+@keyframes bump { 50% { transform: scale(1.35); } }
+.add-bag {
+  appearance: none; cursor: pointer; font-family: var(--sans);
+  margin-top: 8px; width: 100%;
+  background: var(--white); color: var(--lilac-deep);
+  border: 1px solid var(--lilac-soft); border-radius: 999px; padding: 10px 16px;
+  font-size: 0.82rem; font-weight: 600;
+  transition: background var(--ease), border-color var(--ease), color var(--ease);
+}
+.add-bag:hover { background: var(--lilac-tint); border-color: var(--gold); }
+.add-bag.added { background: var(--gold-light); border-color: var(--gold); color: var(--gold-text); }
+.bag-overlay { position: fixed; inset: 0; z-index: 70; background: rgba(78, 64, 96, 0.35); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.bag-overlay[hidden] { display: none; }
+.bag {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 80;
+  width: min(420px, 100vw); background: var(--white);
+  border-left: 1px solid var(--gold);
+  box-shadow: -24px 0 60px rgba(95, 79, 110, 0.18);
+  display: flex; flex-direction: column;
+  transform: translateX(105%); visibility: hidden;
+  transition: transform 320ms cubic-bezier(.22, .61, .36, 1), visibility 320ms;
+}
+.bag.open { transform: none; visibility: visible; }
+.bag-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 26px 24px 18px; border-bottom: 1px solid var(--line); }
+.bag-head h2 { font-size: 1.9rem; margin-top: 8px; }
+.bag-close {
+  appearance: none; cursor: pointer; width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--white); color: var(--lilac-deep);
+  font-size: 1.4rem; line-height: 1; transition: background var(--ease), border-color var(--ease);
+}
+.bag-close:hover { background: var(--lilac-tint); border-color: var(--gold); }
+.bag-items { flex: 1; overflow-y: auto; padding: 8px 24px; }
+.bag-item { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.bag-item img { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; border: 1px solid var(--line); }
+.bag-item-name { font-size: 0.9rem; font-weight: 600; color: var(--lilac); line-height: 1.35; }
+.bag-item-sub { font-size: 0.92rem; color: var(--lilac-deep); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.qty { display: inline-flex; align-items: center; gap: 10px; margin-top: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+.qty button {
+  appearance: none; cursor: pointer; width: 28px; height: 28px; border-radius: 50%;
+  border: 0; background: var(--lilac-tint); color: var(--lilac-deep); font-size: 1rem; font-weight: 700;
+  transition: background var(--ease);
+}
+.qty button:hover { background: var(--gold-light); }
+.qty span { min-width: 16px; text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--lilac-deep); }
+.bag-empty { flex: 1; padding: 40px 24px; text-align: center; color: var(--lilac); }
+.bag-empty[hidden], .bag-foot[hidden] { display: none; }
+.bag-empty-sub { color: var(--muted); font-size: 0.88rem; margin-top: 8px; }
+.bag-foot { padding: 18px 24px 24px; border-top: 1px solid var(--line); background: var(--lilac-tint); display: flex; flex-direction: column; gap: 12px; }
+.bag-total { display: flex; justify-content: space-between; align-items: baseline; color: var(--lilac); font-weight: 600; }
+.bag-total strong { font-size: 1.45rem; color: var(--lilac-deep); font-variant-numeric: tabular-nums; }
+.bag-tickets { font-size: 0.8rem; color: var(--gold-text); background: rgba(245, 230, 202, 0.55); border: 1px solid rgba(200, 168, 107, 0.55); border-radius: 6px; padding: 9px 12px; line-height: 1.5; }
+.bag-send { justify-content: center; }
+.bag-clear { appearance: none; cursor: pointer; background: none; border: 0; color: var(--muted); font-family: var(--sans); font-size: 0.8rem; text-decoration: underline; }
+.bag-clear:hover { color: var(--lilac-deep); }
+.toast {
+  position: fixed; left: 50%; bottom: 26px; z-index: 90; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 14px; max-width: calc(100vw - 32px);
+  background: var(--lilac-deep); color: var(--white); border: 1px solid var(--gold);
+  border-radius: 999px; padding: 10px 10px 10px 20px; font-size: 0.85rem;
+  box-shadow: 0 14px 34px rgba(95, 79, 110, 0.3); animation: fadeUp 0.3s both;
+}
+.toast[hidden] { display: none; }
+.toast button {
+  appearance: none; cursor: pointer; border: 0; border-radius: 999px; flex: none;
+  background: var(--gold-light); color: var(--lilac-deep); font-family: var(--sans);
+  font-size: 0.78rem; font-weight: 700; padding: 7px 14px;
+}
+
 /* ---------- WhatsApp flutuante ---------- */
 .wa-float {
   position: fixed; right: 22px; bottom: 22px; z-index: 60;
@@ -369,7 +455,7 @@ a { color: inherit; }
     <strong>Grupo VIP</strong>
     <span aria-hidden="true">·</span>
     <span>Participe do nosso grupo de WhatsApp e veja peças exclusivas em primeira mão</span>
-    <a class="count-chip" id="group-link" data-testid="promo-group-link" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Quero%20participar%20do%20grupo%20de%20WhatsApp%20com%20pe%C3%A7as%20exclusivas." target="_blank" rel="noopener" style="text-decoration:none">Quero participar</a>
+    <a class="count-chip" id="group-link" data-testid="promo-group-link" href="https://chat.whatsapp.com/HXl4jzAJ6ASErMYgSikaJq" target="_blank" rel="noopener" style="text-decoration:none">Quero participar</a>
   </p>
 </div>
 
@@ -381,12 +467,44 @@ a { color: inherit; }
       <li><a href="#catalogo">Catálogo</a></li>
       <li><a href="#como-comprar">Como comprar</a></li>
     </ul>
-    <a class="wa-small" data-testid="whatsapp-nav" href="https://wa.me/5551993614204" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
-      WhatsApp
-    </a>
+    <div class="nav-actions">
+      <button class="bag-btn" type="button" data-testid="bag-open" aria-label="Abrir sacolinha" onclick="openBag()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="bag-count" id="bag-count" data-testid="bag-count" hidden>0</span>
+      </button>
+      <a class="wa-small" data-testid="whatsapp-nav" href="https://wa.me/5551993614204" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+        WhatsApp
+      </a>
+    </div>
   </div>
 </header>
+
+<div class="bag-overlay" id="bag-overlay" data-testid="bag-overlay" hidden onclick="closeBag()"></div>
+<aside class="bag" id="bag" data-testid="bag-drawer" aria-label="Sacolinha de pedidos" aria-hidden="true">
+  <div class="bag-head">
+    <div>
+      <span class="eyebrow-dark">Seu pedido</span>
+      <h2>Sacolinha</h2>
+    </div>
+    <button class="bag-close" type="button" data-testid="bag-close" aria-label="Fechar sacolinha" onclick="closeBag()">×</button>
+  </div>
+  <div class="bag-items" id="bag-items" data-testid="bag-items"></div>
+  <div class="bag-empty" id="bag-empty" data-testid="bag-empty">
+    <p>Sua sacolinha está vazia.</p>
+    <p class="bag-empty-sub">Toque em "Adicionar à sacolinha" nas peças que você amou.</p>
+  </div>
+  <div class="bag-foot" id="bag-foot" hidden>
+    <div class="bag-total"><span>Total</span><strong id="bag-total" data-testid="bag-total">R$ 0,00</strong></div>
+    <p class="bag-tickets" id="bag-tickets" data-testid="bag-tickets"></p>
+    <a class="btn-wa bag-send" id="bag-send" data-testid="bag-send" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+      Enviar pedido pelo WhatsApp
+    </a>
+    <button class="bag-clear" type="button" data-testid="bag-clear" onclick="clearBag()">Esvaziar sacolinha</button>
+  </div>
+</aside>
+<div class="toast" id="toast" data-testid="bag-toast" role="status" hidden></div>
 
 <section class="hero" id="inicio">
   <div class="hero-inner">
@@ -643,6 +761,7 @@ function cardHTML(p, i) {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
           Comprar pelo WhatsApp
         </a>
+        <button class="add-bag" type="button" data-testid="product-add-bag-${p.ref}" onclick="addToBag('${p.ref}', this)">+ Adicionar à sacolinha</button>
       </div>
     </article>`;
 }
@@ -691,8 +810,102 @@ function setFilter(cat) {
   }, 5000);
 })();
 
+// ---------- Sacolinha de pedidos (salva no navegador) ----------
+const BAG_KEY = 'steicy-sacolinha';
+let bag = {};
+try { bag = JSON.parse(localStorage.getItem(BAG_KEY)) || {}; } catch (e) { bag = {}; }
+const byRef = Object.fromEntries(AVAILABLE.map(p => [p.ref, p]));
+Object.keys(bag).forEach(r => { if (!byRef[r] || !(bag[r] > 0)) delete bag[r]; });
+
+function saveBag() {
+  try { localStorage.setItem(BAG_KEY, JSON.stringify(bag)); } catch (e) {}
+  renderBag();
+}
+function addToBag(ref, btn) {
+  bag[ref] = (bag[ref] || 0) + 1;
+  saveBag();
+  showToast(`${byRef[ref].name} foi para a sacolinha`);
+  if (btn) {
+    btn.textContent = '✓ Na sacolinha';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = '+ Adicionar à sacolinha'; btn.classList.remove('added'); }, 1600);
+  }
+  const c = document.getElementById('bag-count');
+  c.classList.remove('bump'); void c.offsetWidth; c.classList.add('bump');
+}
+function changeQty(ref, delta) {
+  bag[ref] = (bag[ref] || 0) + delta;
+  if (bag[ref] <= 0) delete bag[ref];
+  saveBag();
+}
+function clearBag() { bag = {}; saveBag(); }
+
+function renderBag() {
+  const refs = Object.keys(bag);
+  const qty = refs.reduce((s, r) => s + bag[r], 0);
+  const total = refs.reduce((s, r) => s + bag[r] * byRef[r].price, 0);
+  const count = document.getElementById('bag-count');
+  count.textContent = qty;
+  count.hidden = qty === 0;
+  document.getElementById('bag-empty').hidden = qty > 0;
+  document.getElementById('bag-foot').hidden = qty === 0;
+  document.getElementById('bag-items').innerHTML = refs.map(r => {
+    const p = byRef[r];
+    return `
+      <div class="bag-item" data-testid="bag-item-${r}">
+        <img src="ref-${r}.png" alt="">
+        <div class="bag-item-info">
+          <p class="bag-item-name">${p.name}</p>
+          <p class="ref">REF ${r} · ${fmtBRL(p.price)}</p>
+          <div class="qty">
+            <button type="button" data-testid="bag-minus-${r}" aria-label="Diminuir" onclick="changeQty('${r}', -1)">−</button>
+            <span data-testid="bag-qty-${r}">${bag[r]}</span>
+            <button type="button" data-testid="bag-plus-${r}" aria-label="Aumentar" onclick="changeQty('${r}', 1)">+</button>
+          </div>
+        </div>
+        <strong class="bag-item-sub">${fmtBRL(bag[r] * p.price)}</strong>
+      </div>`;
+  }).join('');
+  document.getElementById('bag-total').textContent = fmtBRL(total);
+  const tickets = Math.floor(total / 100);
+  const missing = 100 - (total % 100);
+  document.getElementById('bag-tickets').textContent = tickets > 0
+    ? `✦ Natal Steicy: este pedido vale ${tickets} ${tickets === 1 ? 'bilhete' : 'bilhetes'} para o sorteio! Faltam ${fmtBRL(missing)} para mais um.`
+    : `✦ Natal Steicy: faltam ${fmtBRL(missing)} para você ganhar 1 bilhete do sorteio.`;
+  const lines = refs.map(r => `• ${bag[r]}x ${byRef[r].name} (REF ${r}) — ${fmtBRL(bag[r] * byRef[r].price)}`);
+  const msg = `Olá Steicy! Quero fazer este pedido:\n\n${lines.join('\n')}\n\nTotal: ${fmtBRL(total)}\n\nAs peças estão disponíveis?`;
+  document.getElementById('bag-send').href = waLink(msg);
+}
+
+function openBag() {
+  document.getElementById('toast').hidden = true;
+  document.getElementById('bag').classList.add('open');
+  document.getElementById('bag').setAttribute('aria-hidden', 'false');
+  document.getElementById('bag-overlay').hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+function closeBag() {
+  document.getElementById('bag').classList.remove('open');
+  document.getElementById('bag').setAttribute('aria-hidden', 'true');
+  document.getElementById('bag-overlay').hidden = true;
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBag(); });
+
+let toastTimer;
+function showToast(text) {
+  const t = document.getElementById('toast');
+  t.innerHTML = `<span></span><button type="button" onclick="openBag()">Ver sacolinha</button>`;
+  t.firstChild.textContent = text;
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
+}
+Object.assign(window, { addToBag, changeQty, clearBag, openBag, closeBag });
+
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('grid').innerHTML = AVAILABLE.map(cardHTML).join('');
+  renderBag();
   document.querySelectorAll('.pill').forEach(b => {
     b.addEventListener('click', () => setFilter(b.dataset.filter));
   });
