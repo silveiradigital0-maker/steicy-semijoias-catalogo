@@ -216,6 +216,21 @@ a { color: inherit; }
   color: var(--gold-text); background: rgba(245, 230, 202, 0.5); border-color: var(--gold);
 }
 .natal-note { color: var(--muted); font-size: 0.8rem; margin-top: 20px; }
+/* Os dois cards (Natal / Grupo VIP) ocupam o mesmo espaço e alternam */
+.natal { display: grid; }
+.natal > .natal-card {
+  grid-area: 1 / 1;
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity 500ms ease, transform 500ms ease, visibility 500ms;
+}
+.natal > .natal-card.active { opacity: 1; visibility: visible; transform: none; }
+.card-dots { display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
+.card-dots button {
+  appearance: none; cursor: pointer; width: 10px; height: 10px; padding: 0;
+  border-radius: 999px; border: 1px solid var(--gold); background: transparent;
+  transition: width var(--ease), background var(--ease);
+}
+.card-dots button.active { width: 28px; background: var(--gold); }
 .natal-art svg { width: 100%; height: auto; display: block; }
 @media (max-width: 860px) {
   .natal-card { grid-template-columns: 1fr; padding: 40px 24px; gap: 24px; }
@@ -537,7 +552,7 @@ a { color: inherit; }
 </section>
 
 <section class="section natal" id="natal" data-testid="natal-section">
-  <div class="natal-card">
+  <div class="natal-card active" data-testid="natal-card">
     <div class="natal-text">
       <span class="eyebrow-dark">Promoção de Natal</span>
       <h2>Natal Steicy</h2>
@@ -569,6 +584,38 @@ a { color: inherit; }
         <path d="M180 130 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="rgba(200,168,107,.2)" stroke="none"/>
       </svg>
     </div>
+  </div>
+  <div class="natal-card group-card" data-testid="group-card" aria-hidden="true">
+    <div class="natal-text">
+      <span class="eyebrow-dark">Grupo VIP no WhatsApp</span>
+      <h2>Peças exclusivas em primeira mão</h2>
+      <p class="natal-sub">Entre no grupo da Steicy e receba as novidades antes de todo mundo.</p>
+      <ul class="natal-steps">
+        <li><span><b>Lançamentos</b> chegam primeiro para quem está no grupo.</span></li>
+        <li><span><b>Peças exclusivas</b> e quantidades limitadas, só para o grupo.</span></li>
+        <li><span>Avisos das <b>promoções</b> e do sorteio do Natal Steicy.</span></li>
+      </ul>
+      <div class="natal-ctas">
+        <a class="btn-wa" data-testid="group-card-cta" href="https://chat.whatsapp.com/HXl4jzAJ6ASErMYgSikaJq" target="_blank" rel="noopener" tabindex="-1">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+          Entrar no grupo
+        </a>
+      </div>
+      <p class="natal-note">É grátis e você pode sair quando quiser.</p>
+    </div>
+    <div class="natal-art" aria-hidden="true">
+      <svg viewBox="0 0 220 200" fill="none" stroke="#C8A86B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 48 h104 a12 12 0 0 1 12 12 v52 a12 12 0 0 1 -12 12 h-62 l-24 20 v-20 h-18 a12 12 0 0 1 -12 -12 v-52 a12 12 0 0 1 12 -12 z" fill="rgba(200,168,107,.12)"/>
+        <path d="M168 84 h12 a12 12 0 0 1 12 12 v44 a12 12 0 0 1 -12 12 h-8 v18 l-22 -18 h-46 a12 12 0 0 1 -12 -12 v-6"/>
+        <path d="M92 74 l7 10 12 -2 -9 9 3 12 -13 -6 -13 6 3 -12 -9 -9 12 2 z" fill="rgba(200,168,107,.3)"/>
+        <path d="M30 22 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" fill="rgba(200,168,107,.25)" stroke="none"/>
+        <path d="M196 40 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="rgba(200,168,107,.25)" stroke="none"/>
+      </svg>
+    </div>
+  </div>
+  <div class="card-dots" role="tablist" aria-label="Destaques">
+    <button type="button" class="active" data-testid="card-dot-natal" aria-label="Ver promoção de Natal" onclick="showCard(0)"></button>
+    <button type="button" data-testid="card-dot-group" aria-label="Ver grupo VIP do WhatsApp" onclick="showCard(1)"></button>
   </div>
 </section>
 
@@ -902,6 +949,25 @@ function showToast(text) {
   toastTimer = setTimeout(() => { t.hidden = true; }, 2600);
 }
 Object.assign(window, { addToBag, changeQty, clearBag, openBag, closeBag });
+
+// Card grande: alterna Natal <-> Grupo VIP a cada 7s (pontinhos trocam na hora).
+const bigCards = document.querySelectorAll('.natal > .natal-card');
+const bigDots = document.querySelectorAll('.card-dots button');
+let bigIdx = 0, bigTimer;
+function showCard(n) {
+  bigIdx = n;
+  bigCards.forEach((c, k) => {
+    const on = k === n;
+    c.classList.toggle('active', on);
+    c.setAttribute('aria-hidden', String(!on));
+    c.querySelectorAll('a').forEach(a => { a.tabIndex = on ? 0 : -1; });
+  });
+  bigDots.forEach((d, k) => d.classList.toggle('active', k === n));
+  clearInterval(bigTimer);
+  bigTimer = setInterval(() => showCard((bigIdx + 1) % bigCards.length), 7000);
+}
+window.showCard = showCard;
+showCard(0);
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('grid').innerHTML = AVAILABLE.map(cardHTML).join('');
