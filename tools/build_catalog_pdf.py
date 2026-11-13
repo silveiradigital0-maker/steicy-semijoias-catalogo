@@ -16,16 +16,16 @@ OUT = ROOT / 'catalogo-steicy.pdf'
 W, H = 1240, 1754
 M = 80  # margem
 
-NAVY = (12, 25, 44)
-NAVY_DEEP = (7, 14, 24)
-IVORY = (252, 250, 246)
-INK = (20, 29, 43)
-MUTED = (92, 103, 121)
-MUTED_NAVY = (186, 199, 213)
+LILAC = (107, 91, 123)       # cor principal
+LILAC_DEEP = (95, 79, 110)
+LILAC_TINT = (247, 243, 250)
+WHITE = (255, 255, 255)
+INK = (78, 64, 96)
+MUTED = (117, 108, 125)
 GOLD = (200, 168, 107)
-GOLD_BRIGHT = (212, 175, 55)
+GOLD_TEXT = (154, 126, 63)
 GOLD_LIGHT = (245, 230, 202)
-LINE = (234, 229, 219)
+LINE = (236, 230, 240)
 
 CATS = [('brincos', 'Brincos'), ('aneis', 'Anéis'), ('pulseiras', 'Pulseiras'), ('colares', 'Colares')]
 WA_NUMBER = '(51) 99361-4204'
@@ -95,8 +95,8 @@ def spaced_width(draw, text, f, tracking=3):
 
 
 def footer(draw, page_no, dark=False):
-    color = MUTED_NAVY if dark else MUTED
-    draw.line([(M, H - 92), (W - M, H - 92)], fill=(40, 55, 80) if dark else LINE, width=1)
+    color = MUTED
+    draw.line([(M, H - 92), (W - M, H - 92)], fill=LINE, width=1)
     f = sans(20, 500)
     draw.text((M, H - 70), 'Steicy Semi-Jóias · Revendedora Cristali', font=f, fill=color)
     right = f'WhatsApp {WA_NUMBER}   ·   {page_no:02d}'
@@ -104,18 +104,16 @@ def footer(draw, page_no, dark=False):
 
 
 def cover(products):
-    page = Image.new('RGB', (W, H), NAVY)
-    d = ImageDraw.Draw(page)
-    # degradê radial simples
-    glow = Image.new('RGB', (W, H), NAVY_DEEP)
-    mask = Image.new('L', (W, H), 0)
-    ImageDraw.Draw(mask).ellipse([W * 0.25, -H * 0.15, W * 1.35, H * 0.65], fill=150)
+    page = Image.new('RGB', (W, H), WHITE)
+    # brilho lilás suave
     from PIL import ImageFilter
+    mask = Image.new('L', (W, H), 0)
+    ImageDraw.Draw(mask).ellipse([W * 0.15, H * 0.05, W * 0.85, H * 0.5], fill=200)
     mask = mask.filter(ImageFilter.GaussianBlur(160))
-    page = Image.composite(Image.new('RGB', (W, H), (22, 38, 61)), page, mask)
+    page = Image.composite(Image.new('RGB', (W, H), (239, 232, 244)), page, mask)
     d = ImageDraw.Draw(page)
     d.rectangle([40, 40, W - 40, H - 40], outline=GOLD, width=2)
-    d.rectangle([52, 52, W - 52, H - 52], outline=(70, 70, 60), width=1)
+    d.rectangle([52, 52, W - 52, H - 52], outline=LINE, width=1)
 
     # logo em disco
     size = 460
@@ -128,38 +126,38 @@ def cover(products):
 
     f = sans(22, 700)
     t = 'CATÁLOGO DE SEMIJOIAS'
-    spaced(d, (cx - spaced_width(d, t, f, 6) / 2, 200), t, f, GOLD_BRIGHT, 6)
+    spaced(d, (cx - spaced_width(d, t, f, 6) / 2, 200), t, f, GOLD_TEXT, 6)
 
     f = serif(96, 600)
     t = 'Steicy Semi-Jóias'
-    d.text((cx - d.textlength(t, font=f) / 2, 850), t, font=f, fill=IVORY)
+    d.text((cx - d.textlength(t, font=f) / 2, 850), t, font=f, fill=LILAC)
     f = serif(44, 600)
     t = 'Revendedora Cristali'
-    d.text((cx - d.textlength(t, font=f) / 2, 975), t, font=f, fill=GOLD_LIGHT)
+    d.text((cx - d.textlength(t, font=f) / 2, 975), t, font=f, fill=GOLD_TEXT)
 
     f = sans(26, 600)
     t = 'Banho de ouro  ·  Prata 925  ·  Curadoria Cristali'
-    d.text((cx - d.textlength(t, font=f) / 2, 1070), t, font=f, fill=MUTED_NAVY)
+    d.text((cx - d.textlength(t, font=f) / 2, 1070), t, font=f, fill=MUTED)
     f = sans(24, 500)
     t = f'{len(products)} peças exclusivas'
-    d.text((cx - d.textlength(t, font=f) / 2, 1118), t, font=f, fill=MUTED_NAVY)
+    d.text((cx - d.textlength(t, font=f) / 2, 1118), t, font=f, fill=MUTED)
 
     # caixa Natal Steicy
     bx0, by0, bx1, by1 = M + 40, 1230, W - M - 40, 1500
-    d.rounded_rectangle([bx0, by0, bx1, by1], radius=14, outline=GOLD, width=2, fill=(16, 30, 50))
+    d.rounded_rectangle([bx0, by0, bx1, by1], radius=14, outline=GOLD, width=2, fill=LILAC_DEEP)
     f = sans(22, 700)
     t = '—  NATAL STEICY  —'
-    spaced(d, (cx - spaced_width(d, t, f, 5) / 2, by0 + 40), t, f, GOLD_BRIGHT, 5)
+    spaced(d, (cx - spaced_width(d, t, f, 5) / 2, by0 + 40), t, f, GOLD_LIGHT, 5)
     f = serif(40, 600)
     t = 'A cada R$ 100,00 em compras, 1 bilhete'
-    d.text((cx - d.textlength(t, font=f) / 2, by0 + 92), t, font=f, fill=IVORY)
+    d.text((cx - d.textlength(t, font=f) / 2, by0 + 92), t, font=f, fill=WHITE)
     f = sans(26, 500)
     t = 'para concorrer a um conjunto de colar e brincos.'
-    d.text((cx - d.textlength(t, font=f) / 2, by0 + 162), t, font=f, fill=MUTED_NAVY)
+    d.text((cx - d.textlength(t, font=f) / 2, by0 + 162), t, font=f, fill=(230, 222, 236))
 
     f = sans(26, 700)
-    t = f'Peça pelo WhatsApp  {WA_NUMBER}'
-    d.text((cx - d.textlength(t, font=f) / 2, 1570), t, font=f, fill=GOLD_LIGHT)
+    t = f'Compre pelo WhatsApp  {WA_NUMBER}'
+    d.text((cx - d.textlength(t, font=f) / 2, 1570), t, font=f, fill=LILAC_DEEP)
     return page
 
 
@@ -179,14 +177,14 @@ def product_pages(products, start_no):
         per = cols * rows
         chunks = [items[i:i + per] for i in range(0, len(items), per)]
         for ci, chunk in enumerate(chunks):
-            page = Image.new('RGB', (W, H), IVORY)
+            page = Image.new('RGB', (W, H), WHITE)
             d = ImageDraw.Draw(page)
             f = sans(20, 700)
             d.line([(M, M + 18), (M + 50, M + 18)], fill=GOLD, width=2)
-            spaced(d, (M + 66, M + 4), 'COLEÇÃO EXCLUSIVA', f, (154, 126, 63), 5)
+            spaced(d, (M + 66, M + 4), 'COLEÇÃO EXCLUSIVA', f, GOLD_TEXT, 5)
             f = serif(64, 600)
             title = label if ci == 0 else f'{label} (cont.)'
-            d.text((M, M + 46), title, font=f, fill=NAVY)
+            d.text((M, M + 46), title, font=f, fill=LILAC)
             f = sans(22, 500)
             t = f'{len(items)} peças'
             d.text((W - M - d.textlength(t, font=f), M + 82), t, font=f, fill=MUTED)
@@ -195,7 +193,7 @@ def product_pages(products, start_no):
                 col, row = i % cols, i // cols
                 x = M + col * (cell_w + gap)
                 y = M + header_h + row * (cell_h + 40)
-                d.rectangle([x, y, x + cell_w, y + cell_h], fill=(255, 255, 255), outline=LINE, width=1)
+                d.rectangle([x, y, x + cell_w, y + cell_h], fill=WHITE, outline=LINE, width=1)
                 photo = Image.open(ROOT / f"ref-{p['ref']}.png").convert('RGB').resize((img_size, img_size), Image.LANCZOS)
                 page.paste(photo, (x, y))
                 if p['hl']:
@@ -203,25 +201,25 @@ def product_pages(products, start_no):
                     t = 'CURADORIA'
                     tw = spaced_width(d, t, f, 3)
                     d.rectangle([x + 14, y + 14, x + 14 + tw + 24, y + 48], fill=GOLD)
-                    spaced(d, (x + 26, y + 20), t, f, INK, 3)
+                    spaced(d, (x + 26, y + 20), t, f, (59, 47, 71), 3)
                 ty = y + img_size + 16
                 if p['metal']:
                     f = sans(15, 700)
                     t = p['metal'].upper()
                     tw = spaced_width(d, t, f, 2)
                     d.rounded_rectangle([x + 16, ty, x + 16 + tw + 22, ty + 30], radius=15,
-                                        fill=(248, 242, 230), outline=(222, 205, 168), width=1)
-                    spaced(d, (x + 27, ty + 6), t, f, NAVY, 2)
+                                        fill=(250, 243, 230), outline=(222, 205, 168), width=1)
+                    spaced(d, (x + 27, ty + 6), t, f, GOLD_TEXT, 2)
                     ty += 40
                 f = sans(21, 600)
                 for line in wrap(d, p['name'], f, cell_w - 32)[:2]:
-                    d.text((x + 16, ty), line, font=f, fill=INK)
+                    d.text((x + 16, ty), line, font=f, fill=LILAC)
                     ty += 28
                 f = sans(17, 500)
                 d.text((x + 16, y + cell_h - 46), f"REF {p['ref']}", font=f, fill=MUTED)
                 f = sans(28, 700)
                 price = brl(p['price'])
-                d.text((x + cell_w - 16 - d.textlength(price, font=f), y + cell_h - 54), price, font=f, fill=NAVY)
+                d.text((x + cell_w - 16 - d.textlength(price, font=f), y + cell_h - 54), price, font=f, fill=LILAC_DEEP)
             footer(d, page_no)
             pages.append(page)
             page_no += 1
@@ -229,15 +227,15 @@ def product_pages(products, start_no):
 
 
 def closing(page_no):
-    page = Image.new('RGB', (W, H), NAVY_DEEP)
+    page = Image.new('RGB', (W, H), LILAC_TINT)
     d = ImageDraw.Draw(page)
     d.rectangle([40, 40, W - 40, H - 40], outline=GOLD, width=2)
     f = sans(22, 700)
     d.line([(M + 40, 318), (M + 90, 318)], fill=GOLD, width=2)
-    spaced(d, (M + 106, 304), 'SEU PRÓXIMO PASSO', f, GOLD_BRIGHT, 5)
-    d.text((M + 40, 350), 'Como comprar', font=serif(84, 600), fill=IVORY)
-    d.text((M + 40, 480), 'Anote a referência, envie uma mensagem e combinamos', font=sans(28, 500), fill=MUTED_NAVY)
-    d.text((M + 40, 520), 'os detalhes pelo WhatsApp.', font=sans(28, 500), fill=MUTED_NAVY)
+    spaced(d, (M + 106, 304), 'SEU PRÓXIMO PASSO', f, GOLD_TEXT, 5)
+    d.text((M + 40, 350), 'Como comprar', font=serif(84, 600), fill=LILAC)
+    d.text((M + 40, 480), 'Anote a referência, envie uma mensagem e combinamos', font=sans(28, 500), fill=MUTED)
+    d.text((M + 40, 520), 'os detalhes pelo WhatsApp.', font=sans(28, 500), fill=MUTED)
     steps = [
         ('01', 'Escolha sua peça', 'Anote a referência de quem chamou sua atenção.'),
         ('02', 'Envie uma mensagem', 'Informe a referência escolhida no WhatsApp da Steicy.'),
@@ -245,19 +243,19 @@ def closing(page_no):
     ]
     y = 650
     for num, title, desc in steps:
-        d.line([(M + 40, y), (W - M - 40, y)], fill=(60, 66, 70), width=1)
-        d.text((M + 40, y + 30), num, font=serif(72, 400), fill=GOLD_BRIGHT)
-        d.text((M + 200, y + 40), title, font=serif(40, 600), fill=IVORY)
-        d.text((M + 200, y + 100), desc, font=sans(26, 500), fill=MUTED_NAVY)
+        d.line([(M + 40, y), (W - M - 40, y)], fill=GOLD, width=1)
+        d.text((M + 40, y + 30), num, font=serif(72, 400), fill=GOLD_TEXT)
+        d.text((M + 200, y + 40), title, font=serif(40, 600), fill=LILAC)
+        d.text((M + 200, y + 100), desc, font=sans(26, 500), fill=MUTED)
         y += 200
     by = y + 60
-    d.rounded_rectangle([M + 40, by, W - M - 40, by + 120], radius=60, fill=(37, 211, 102))
+    d.rounded_rectangle([M + 40, by, W - M - 40, by + 120], radius=60, fill=LILAC_DEEP)
     f = sans(38, 700)
     t = f'WhatsApp  {WA_NUMBER}'
     d.text((W / 2 - d.textlength(t, font=f) / 2, by + 36), t, font=f, fill=(255, 255, 255))
     f = sans(24, 500)
     t = 'wa.me/5551993614204'
-    d.text((W / 2 - d.textlength(t, font=f) / 2, by + 150), t, font=f, fill=GOLD_LIGHT)
+    d.text((W / 2 - d.textlength(t, font=f) / 2, by + 150), t, font=f, fill=GOLD_TEXT)
     footer(d, page_no, dark=True)
     return page
 
