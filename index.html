@@ -312,6 +312,13 @@ a { color: inherit; }
 .step h3 { font-size: 1.28rem; margin-top: 14px; color: var(--ivory); }
 .step p { color: var(--muted-navy); margin-top: 8px; font-size: 0.94rem; line-height: 1.7; }
 .wa-wrap { margin-top: 56px; display: flex; justify-content: center; }
+.pdf-note { color: var(--muted-navy); font-size: 0.85rem; margin-top: 20px; text-align: center; }
+.pdf-note a {
+  color: var(--gold-light); font-weight: 600; text-decoration: none;
+  border-bottom: 1px solid rgba(200, 168, 107, 0.5); padding-bottom: 2px;
+  transition: color var(--ease), border-color var(--ease);
+}
+.pdf-note a:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
 .btn-wa {
   display: inline-flex; align-items: center; gap: 12px;
   background: var(--wa); color: #fff; text-decoration: none;
@@ -404,6 +411,7 @@ a { color: inherit; }
       <div class="hero-ctas">
         <a class="btn-hero" href="#catalogo">Explorar o catálogo</a>
         <a class="btn-ghost" href="#como-comprar">Como comprar</a>
+        <a class="btn-ghost" data-testid="pdf-download" href="catalogo-steicy.pdf" download="catalogo-steicy-semi-joias.pdf">Baixar catálogo em PDF</a>
       </div>
       <div class="hero-meta">
         <span>Banho de ouro</span>
@@ -508,6 +516,7 @@ a { color: inherit; }
         Falar no WhatsApp
       </a>
     </div>
+    <p class="pdf-note">Prefere enviar para uma amiga? <a data-testid="pdf-download-footer" href="catalogo-steicy.pdf" download="catalogo-steicy-semi-joias.pdf">Baixe o catálogo completo em PDF</a></p>
   </div>
 </section>
 
@@ -579,6 +588,7 @@ const PRODUCTS = [
   { cat: 'aneis', ref: '88138', name: 'Anel seis elos', metal: '', price: 189 },
   { cat: 'aneis', ref: '88221', name: 'Anel sete zircônias redondas', metal: 'Banho de ouro', price: 159 },
   { cat: 'aneis', ref: '88229', name: 'Anel linha cinco zircônias', metal: 'Banho de ouro', price: 129 },
+  { cat: 'aneis', ref: '87863', name: 'Anel cinco gotas com pedra vermelha e zircônias', metal: 'Banho de ouro', price: 199 },
 
   { cat: 'pulseiras', ref: '85098', name: 'Pulseira sete elos quadrados', metal: '', price: 429, hl: true },
   { cat: 'pulseiras', ref: '85676', name: 'Pulseira elos corações', metal: '', price: 129 },
