@@ -60,6 +60,8 @@ a { color: inherit; }
   padding: 12px 20px;
   border-bottom: 2px solid var(--gold);
 }
+.promo p[hidden] { display: none; }
+.promo p { animation: fadeUp 0.5s both; }
 .promo p {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
   gap: 6px 12px; font-size: 0.875rem; line-height: 1.5;
@@ -361,6 +363,13 @@ a { color: inherit; }
     <span aria-hidden="true">·</span>
     <span>A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos</span>
     <span class="count-chip" id="promo-countdown" data-testid="promo-countdown" hidden></span>
+  </p>
+  <p class="promo-slide" data-testid="promo-group" hidden>
+    <svg class="sparkle" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.2L20 10l-5.8 1.8L12 18l-2.2-6.2L4 10l5.8-1.8z"/></svg>
+    <strong>Grupo VIP</strong>
+    <span aria-hidden="true">·</span>
+    <span>Participe do nosso grupo de WhatsApp e veja peças exclusivas em primeira mão</span>
+    <a class="count-chip" id="group-link" data-testid="promo-group-link" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Quero%20participar%20do%20grupo%20de%20WhatsApp%20com%20pe%C3%A7as%20exclusivas." target="_blank" rel="noopener" style="text-decoration:none">Quero participar</a>
   </p>
 </div>
 
@@ -668,6 +677,18 @@ function setFilter(cat) {
     const el = document.getElementById(id);
     if (el) { el.textContent = label; el.hidden = false; }
   });
+})();
+
+// Faixa do topo: alterna Natal <-> Grupo VIP a cada 5s.
+// Para usar o link de convite do grupo, troque o href de #group-link.
+(function rotatePromo() {
+  const slides = document.querySelectorAll('.promo > p');
+  let i = 0;
+  setInterval(() => {
+    slides[i].hidden = true;
+    i = (i + 1) % slides.length;
+    slides[i].hidden = false;
+  }, 5000);
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
