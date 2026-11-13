@@ -26,5 +26,5 @@ Positioning: ALTO TICKET / exclusivity — "Royal Navy & Champagne Gold" design 
 
 ## Data model
 - `PRODUCTS` inline in index.html: `{ cat, ref, name, metal, price, hl? }` — 71 entries kept even when hidden (data preserved).
-- Counts by category with photos: brincos 24, anéis 14, pulseiras 4, colares 13 → 55 visible.
+- Counts by category with photos: brincos 25, anéis 13, pulseiras 4, colares 13 → 55 visible. (Argola linha coração verde / 88242 é BRINCO, corrigido a pedido da cliente.)
 - Adding a product: append to `PRODUCTS` + drop `ref-<REF>.png` at root (keep it OUT of `WITHOUT_PHOTO`).
