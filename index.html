@@ -1,1357 +1,385 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steicy Semi - Jóias | Catálogo</title>
+<title>Steicy Semi-Jóias | Catálogo Exclusivo de Semijoias</title>
+<meta name="description" content="Catálogo exclusivo de semijoias Steicy — banho de ouro e prata 925, com curadoria Cristali. Escolha sua peça e finalize o atendimento pelo WhatsApp.">
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
 <style>
-/* Skip artifact shell — fixed styles served beside every artifact.
-   Tokens, utilities and components (basecoat 1.0 markup, no CDN); artifacts
-   override --accent for their own identity. */
+/* ============================================================
+   Steicy Semi-Jóias — Catálogo Alto Ticket
+   Royal Navy & Champagne Gold · Playfair Display + Plus Jakarta Sans
+   ============================================================ */
 :root {
-  color-scheme: light dark;
-  --accent: #2563eb;
-  --accent-contrast: #ffffff;
-  --accent-text: color-mix(in srgb, var(--accent) 72%, #000);
-  --bg: #f8f9fb;
-  --surface: #ffffff;
-  --text: #14171f;
-  --text-muted: #5b6472;
-  --border: rgba(20, 23, 31, 0.10);
-  --radius: 10px;
-  --shadow: 0 1px 3px rgba(20, 23, 31, 0.08);
-  --space: 16px;
-  --success: #0a7a35;
-  --danger: #c0262d;
-  --warning: #8a5300;
-}
-/* Theme resolution. Without data-theme the viewer's system preference decides,
-   as it always did. With it, the artifact's own choice wins in BOTH directions:
-   a page that hardcodes one palette must not be handed the opposite set of
-   tokens by the machine it happens to be opened on. The dark values appear
-   twice because a media query cannot be folded into a selector list.
-   The attribute sits inside :where() so these blocks keep the specificity of a
-   bare :root — the page's own <style> is linked after this file and must go on
-   overriding any token it wants, exactly as it could before. */
-@media (prefers-color-scheme: dark) {
-  :root:where(:not([data-theme="light"])) {
-    --accent-text: color-mix(in srgb, var(--accent) 78%, #fff);
-    --bg: #101318;
-    --surface: #181c23;
-    --text: #eef1f6;
-    --text-muted: #9aa4b2;
-    --border: rgba(238, 241, 246, 0.12);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    --success: #4ade80;
-    --danger: #f87171;
-    --warning: #fbbf24;
-  }
-}
-:root:where([data-theme="dark"]) {
-  color-scheme: dark;
-  --accent-text: color-mix(in srgb, var(--accent) 78%, #fff);
-  --bg: #101318;
-  --surface: #181c23;
-  --text: #eef1f6;
-  --text-muted: #9aa4b2;
-  --border: rgba(238, 241, 246, 0.12);
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --success: #4ade80;
-  --danger: #f87171;
-  --warning: #fbbf24;
-}
-:root:where([data-theme="light"]) { color-scheme: light; }
-/* Pages generated before the shell had its own components still link the
-   basecoat CDN, which reads its own tokens and switches theme only on a
-   .dark class. Bridged to the shell's, whatever of it those pages use takes
-   the page's accent and follows the declared theme. Its --accent token is a
-   hover tint, renamed in its theme as --color-accent; the shell's --accent is
-   the brand colour, so the tint is derived from it here. */
-:root {
-  --background: var(--bg);
-  --foreground: var(--text);
-  --card: var(--surface);
-  --card-foreground: var(--text);
-  --popover: var(--surface);
-  --popover-foreground: var(--text);
-  --primary: var(--accent);
-  --primary-foreground: var(--accent-contrast);
-  --secondary: color-mix(in srgb, var(--text) 7%, var(--surface));
-  --secondary-foreground: var(--text);
-  --muted: color-mix(in srgb, var(--text) 5%, var(--surface));
-  --muted-foreground: var(--text-muted);
-  --color-accent: color-mix(in srgb, var(--accent) 12%, var(--surface));
-  --color-accent-foreground: var(--text);
-  --destructive: var(--danger);
-  --input: var(--border);
-  --ring: var(--accent);
+  --navy: #0C192C;
+  --navy-deep: #0A1320;
+  --navy-ink: #141D2B;
+  --ivory: #FCFAF6;
+  --panel: #FFFFFF;
+  --muted: #5C6779;
+  --muted-navy: #BAC7D5;
+  --gold: #C8A86B;
+  --gold-bright: #D4AF37;
+  --gold-light: #F5E6CA;
+  --line: #EAE5DB;
+  --wa: #25D366;
+  --wa-hover: #1EBE5D;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --ease: 220ms cubic-bezier(.22, .61, .36, 1);
+  --shadow-card: 0 16px 36px rgba(12, 25, 44, 0.10);
 }
 * { box-sizing: border-box; }
-/* The reset the pages were written against: they all linked basecoat, which
-   ships Tailwind's. Its components now live here, so the reset does too. */
-*, ::before, ::after, ::backdrop { margin: 0; padding: 0; border: 0 solid; }
-/* Preflight's rule too: without it a component class that sets display
-   (.alert, .card, .btn…) beats the hidden attribute and shows the element. */
-[hidden]:where(:not([hidden="until-found"])) { display: none !important; }
-.hidden { display: none !important; }
-h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
-a { color: inherit; text-decoration: inherit; }
-b, strong { font-weight: bolder; }
-ol, ul, menu { list-style: none; }
-svg, video, canvas, iframe { display: block; vertical-align: middle; }
-button, input, select, textarea { color: inherit; background-color: transparent; border-radius: 0; }
-table { border-collapse: collapse; }
-hr { height: 0; color: inherit; border-top-width: 1px; }
-html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 92px; }
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.55;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  background: var(--ivory);
+  color: var(--navy-ink);
   -webkit-font-smoothing: antialiased;
 }
-img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; margin: 0; }
+p { margin: 0; }
+img { max-width: 100%; }
+a { color: inherit; }
 
-.shell-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-.shell-section { padding: calc(var(--space) * 2) 0; }
-.shell-grid { display: grid; gap: var(--space); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.shell-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: var(--space); }
-.shell-footer { padding: 24px 0 40px; color: var(--text-muted); font-size: 13px; }
-
-.shell-hero { padding: calc(var(--space) * 3) 0 calc(var(--space) * 2); }
-.shell-hero h1 { font-size: clamp(26px, 4vw, 40px); line-height: 1.15; margin: 0 0 10px; text-wrap: balance; }
-.shell-hero p { color: var(--text-muted); max-width: 60ch; margin: 0; }
-
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: var(--space);
+/* ---------- Promo banner ---------- */
+.promo {
+  background: var(--navy);
+  color: var(--ivory);
+  text-align: center;
+  padding: 10px 20px;
 }
+.promo p { font-size: 0.8125rem; line-height: 1.5; }
+.promo strong { color: var(--gold-light); font-weight: 600; letter-spacing: 0.04em; }
+@media (min-width: 800px) { .promo p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
 
-.kpi { display: flex; flex-direction: column; gap: 4px; }
-.kpi .kpi-value { font-size: clamp(22px, 2.3vw, 28px); font-weight: 650; line-height: 1.1; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
-.kpi .kpi-label { font-size: 13px; color: var(--text-muted); }
-.kpi .kpi-delta { font-size: 12.5px; font-weight: 600; }
-.kpi .kpi-delta.up { color: var(--success); }
-.kpi .kpi-delta.down { color: var(--danger); }
-
-table.shell-table { border-collapse: collapse; width: 100%; font-size: 14px; }
-table.shell-table th {
-  text-align: left; font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase;
-  color: var(--text-muted); font-weight: 600;
+/* ---------- Nav ---------- */
+.site-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(252, 250, 246, 0.92);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
 }
-table.shell-table th, table.shell-table td { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--border); }
-table.shell-table td.num, table.shell-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
-table.shell-table tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-
-.chart-box { width: 100%; min-height: 220px; }
-.chart-box svg { width: 100%; height: auto; display: block; }
-.chart-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 12px; font-size: 12.5px; color: var(--text-muted); }
-.chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
-.chart-legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-.chart-legend b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
-
-.muted { color: var(--text-muted); }
-.accent { color: var(--accent-text); }
-.shell-badge, .eyebrow {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent-text);
+.nav-inner {
+  max-width: 1240px; margin: 0 auto; padding: 14px 24px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px;
 }
-/* A pill keeps its content width inside flex and grid columns, which would
-   otherwise stretch it across the card; a centred parent still centres it. */
-.shell-badge, .eyebrow, .badge { width: fit-content; max-width: 100%; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .shell-fade { animation: shell-fade 400ms ease both; }
-  @keyframes shell-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.brand {
+  font-family: var(--serif); font-size: 1.3rem; color: var(--navy);
+  text-decoration: none; letter-spacing: 0.01em; white-space: nowrap;
 }
-
-/* Layout and type utilities: what the pages kept spelling in style="".
-   Spacing and type sizes follow Tailwind's scale; there is no Tailwind. */
-.row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.stack { display: flex; flex-direction: column; gap: var(--space); }
-.between { justify-content: space-between; }
-.grow { flex: 1 1 0; min-width: 0; }
-.cols-2, .cols-3, .cols-4, .cols-5 { display: grid; gap: var(--space); grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 720px) {
-  .cols-2, .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.nav-links { display: flex; flex-wrap: wrap; gap: 6px 26px; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; padding: 6px 2px;
+  border-bottom: 1px solid transparent; transition: color var(--ease), border-color var(--ease);
 }
-@media (min-width: 1000px) { .cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-@media (min-width: 1100px) { .cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-.gap-1 { gap: 4px; } .gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; } .gap-6 { gap: 24px; }
-.m-0 { margin: 0; }
-.mt-1 { margin-top: 4px; } .mt-2 { margin-top: 8px; } .mt-3 { margin-top: 12px; } .mt-4 { margin-top: 16px; } .mt-6 { margin-top: 24px; }
-.mb-1 { margin-bottom: 4px; } .mb-2 { margin-bottom: 8px; } .mb-3 { margin-bottom: 12px; } .mb-4 { margin-bottom: 16px; } .mb-6 { margin-bottom: 24px; }
-.p-2 { padding: 8px; } .p-3 { padding: 12px; } .p-4 { padding: 16px; } .p-6 { padding: 24px; }
-.text-xs { font-size: 12px; } .text-sm { font-size: 14px; } .text-base { font-size: 16px; }
-.text-lg { font-size: 18px; } .text-xl { font-size: 20px; line-height: 1.35; }
-.text-2xl { font-size: 24px; line-height: 1.25; } .text-3xl { font-size: 30px; line-height: 1.2; }
-.font-medium { font-weight: 500; } .font-semibold { font-weight: 600; } .font-bold { font-weight: 700; }
-.text-right { text-align: right; } .text-center { text-align: center; }
-.nowrap { white-space: nowrap; }
-.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
-.w-full { width: 100%; }
-.text-success { color: var(--success); } .text-danger { color: var(--danger); } .text-warning { color: var(--warning); }
-
-/* Components, with basecoat 1.0 markup (variants and sizes are data
-   attributes) and the shell tokens, so a page needs neither component CSS
-   nor a CSS framework. An older page that also links basecoat gets these
-   rules after it, over the same properties. */
-button, input, select, textarea { font: inherit; }
-input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  height: 36px; padding: 0 14px; border: 1px solid transparent; border-radius: calc(var(--radius) - 2px);
-  background: var(--accent); color: var(--accent-contrast);
-  font-size: 14px; font-weight: 500; line-height: 1; white-space: nowrap; text-decoration: none; cursor: pointer;
-  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+.nav-links a:hover { color: var(--navy); border-bottom-color: var(--gold); }
+.wa-small {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--wa); color: #fff; text-decoration: none;
+  font-size: 0.8125rem; font-weight: 600; padding: 9px 18px; border-radius: 999px;
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
 }
-.btn:hover { background: color-mix(in srgb, var(--accent) 86%, #000); }
-.btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
-.btn[data-variant="secondary"] { background: color-mix(in srgb, var(--text) 8%, var(--surface)); color: var(--text); }
-.btn[data-variant="secondary"]:hover { background: color-mix(in srgb, var(--text) 14%, var(--surface)); }
-.btn[data-variant="outline"] { background: var(--surface); color: var(--text); border-color: var(--border); }
-.btn[data-variant="ghost"] { background: transparent; color: var(--text); }
-.btn[data-variant="outline"]:hover, .btn[data-variant="ghost"]:hover { background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
-.btn[data-variant="destructive"] { background: var(--danger); color: var(--bg); }
-.btn[data-variant="destructive"]:hover { background: color-mix(in srgb, var(--danger) 86%, var(--text)); }
-.btn[data-variant="link"] { height: auto; padding: 0; background: none; color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px; }
-.btn[data-size="sm"] { height: 30px; padding: 0 10px; font-size: 13px; }
-.btn[data-size="lg"] { height: 42px; padding: 0 20px; font-size: 15px; }
-.btn[data-size="icon"] { width: 36px; padding: 0; }
-
-.badge {
-  display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px;
-  border: 1px solid transparent; border-radius: 999px; background: var(--accent); color: var(--accent-contrast);
-  font-size: 12px; font-weight: 600; line-height: 1.5; white-space: nowrap;
+.wa-small:hover {
+  background: var(--wa-hover); transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.30);
 }
-.badge[data-variant="secondary"] { background: color-mix(in srgb, var(--text) 8%, var(--surface)); color: var(--text); }
-.badge[data-variant="outline"] { background: transparent; color: var(--text); border-color: var(--border); }
-.badge[data-variant="destructive"] { background: color-mix(in srgb, var(--danger) 14%, var(--surface)); color: var(--danger); }
+.wa-small svg, .btn-wa svg, .wa-float svg, .ask svg { fill: currentColor; }
+.wa-small svg { width: 15px; height: 15px; }
 
-.alert {
-  display: grid; gap: 4px; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--surface); color: var(--text); font-size: 14px;
+/* ---------- Hero ---------- */
+.hero {
+  background: radial-gradient(circle at 80% 20%, #16263D 0%, #0C192C 60%, #070E18 100%);
+  color: var(--ivory);
+  border-bottom: 1px solid rgba(200, 168, 107, 0.28);
 }
-.alert h2, .alert h3 { margin: 0; font-size: 14px; font-weight: 600; }
-.alert p, .alert section { margin: 0; color: var(--text-muted); }
-.alert[data-variant="destructive"] { border-color: color-mix(in srgb, var(--danger) 45%, var(--border)); background: color-mix(in srgb, var(--danger) 7%, var(--surface)); color: var(--danger); }
-
-.card {
-  display: flex; flex-direction: column; gap: 16px; padding: 20px 0;
-  border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px);
-  background: var(--surface); color: var(--text); box-shadow: var(--shadow);
+.hero-inner {
+  max-width: 1240px; margin: 0 auto; padding: 84px 24px 92px;
+  display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center;
 }
-.card > header, .card > section, .card > footer { padding: 0 20px; }
-.card > header { display: grid; gap: 4px; }
-.card > header h2, .card > header h3 { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.3; }
-.card > header p { margin: 0; color: var(--text-muted); font-size: 14px; }
-.card > footer { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-
-.input {
-  width: 100%; min-height: 36px; padding: 6px 12px; border: 1px solid var(--border); border-radius: calc(var(--radius) - 2px);
-  background: var(--surface); color: var(--text); font-size: 14px;
+@media (min-width: 900px) { .hero-inner { grid-template-columns: 1.2fr 1fr; gap: 64px; } }
+.eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold-bright); margin-bottom: 22px;
 }
-textarea.input { min-height: 84px; resize: vertical; }
-.input::placeholder { color: var(--text-muted); }
-.input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
-.field { display: grid; gap: 6px; }
-.field label { font-size: 14px; font-weight: 500; }
-.field [role="alert"] { color: var(--danger); font-size: 13px; }
-
-dialog.dialog {
-  width: min(520px, calc(100vw - 32px)); max-height: calc(100vh - 32px); margin: auto; padding: 0;
-  border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px);
-  background: var(--surface); color: var(--text); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+.eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--gold); flex: none; }
+.hero h1 { font-size: clamp(2.6rem, 5.4vw, 3.4rem); letter-spacing: -0.01em; }
+.hero .subtitle {
+  font-family: var(--serif); font-style: italic; font-weight: 600;
+  font-size: clamp(1.15rem, 2vw, 1.45rem); color: var(--gold-light); margin-top: 10px;
 }
-dialog.dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
-dialog.dialog > div { display: grid; gap: 16px; padding: 24px; }
-dialog.dialog header { display: grid; gap: 4px; }
-dialog.dialog header h2 { margin: 0; font-size: 18px; font-weight: 600; }
-dialog.dialog header p { margin: 0; color: var(--text-muted); font-size: 14px; }
-dialog.dialog footer { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
-
-.tabs { display: grid; gap: 12px; }
-.tabs > [role="tablist"] {
-  display: inline-flex; gap: 4px; width: fit-content; max-width: 100%; padding: 4px; overflow-x: auto;
-  border-radius: var(--radius); background: color-mix(in srgb, var(--text) 6%, var(--surface));
+.hero .tagline { color: var(--muted-navy); max-width: 48ch; margin-top: 22px; line-height: 1.75; font-size: 1.02rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.btn-hero {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ivory); color: var(--navy); text-decoration: none;
+  font-size: 0.875rem; font-weight: 700; letter-spacing: 0.02em;
+  padding: 14px 28px; border-radius: 999px;
+  transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
 }
-.tabs [role="tab"] {
-  padding: 6px 12px; border: 0; border-radius: calc(var(--radius) - 4px); background: transparent;
-  color: var(--text-muted); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer;
+.btn-hero:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 28px rgba(200, 168, 107, 0.35);
+  background: var(--gold-light);
 }
-.tabs [role="tab"][aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
-.tabs [role="tabpanel"][hidden] { display: none; }
-
-.accordion > details { border-bottom: 1px solid var(--border); }
-.accordion > details > summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 14px 0; font-weight: 500; list-style: none; cursor: pointer;
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--gold-light); text-decoration: none;
+  font-size: 0.875rem; font-weight: 600; letter-spacing: 0.02em;
+  padding: 14px 28px; border-radius: 999px; border: 1px solid rgba(200, 168, 107, 0.55);
+  transition: background var(--ease), border-color var(--ease), transform var(--ease);
 }
-.accordion > details > summary::-webkit-details-marker { display: none; }
-.accordion > details > summary::after { content: "+"; color: var(--text-muted); font-size: 18px; line-height: 1; }
-.accordion > details[open] > summary::after { content: "\2212"; }
-.accordion > details > :not(summary) { margin: 0 0 14px; color: var(--text-muted); }
-
-.toaster {
-  position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; flex-direction: column-reverse; gap: 8px;
-  width: min(360px, calc(100vw - 32px)); pointer-events: none;
+.btn-ghost:hover { background: rgba(200, 168, 107, 0.12); border-color: var(--gold-bright); transform: scale(1.02); }
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 38px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted-navy);
 }
-.toaster .toast { pointer-events: auto; transition: opacity 200ms ease, transform 200ms ease; }
-.toaster .toast[aria-hidden="true"] { opacity: 0; transform: translateY(8px); }
-.toaster .toast-content {
-  padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--surface); color: var(--text); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); font-size: 13px;
+.hero-meta span { display: inline-flex; align-items: center; gap: 9px; }
+.hero-meta span::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: none; }
+.logo-disc {
+  width: min(320px, 68vw); aspect-ratio: 1 / 1; margin: 0 auto;
+  border-radius: 50%; padding: 10px;
+  border: 1px solid rgba(200, 168, 107, 0.55);
+  box-shadow: 0 0 0 10px rgba(200, 168, 107, 0.07), 0 24px 60px rgba(0, 0, 0, 0.45);
+  background: #F5EBD8;
 }
-.toaster .toast-content h2 { margin: 0 0 2px; font-size: 14px; font-weight: 600; }
-.toaster .toast-content p { margin: 0; color: var(--text-muted); }
+.logo-disc img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 
-/* skipUI building blocks. */
-.skip-table-search { max-width: 320px; margin-bottom: 12px; }
-.skip-table-wrap { overflow-x: auto; }
-table.shell-table th[data-sort] { cursor: pointer; user-select: none; }
-table.shell-table th[aria-sort="ascending"]::after { content: " \25B2"; font-size: 9px; }
-table.shell-table th[aria-sort="descending"]::after { content: " \25BC"; font-size: 9px; }
-table.shell-table td.skip-table-empty { color: var(--text-muted); text-align: center; padding: 24px 0; }
-.skip-pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; color: var(--text-muted); }
-.toaster .toast[data-type="success"] .toast-content { border-left: 3px solid var(--success); }
-.toaster .toast[data-type="error"] .toast-content { border-left: 3px solid var(--danger); }
-
-</style>
-<script>
-/* Skip artifact shell — fixed helpers served beside every artifact. */
-(function () {
-  "use strict";
-
-  var fmt = {
-    num: function (v, opts) { return new Intl.NumberFormat("pt-BR", opts || {}).format(v); },
-    brl: function (v) { return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v); },
-    pct: function (v) { return new Intl.NumberFormat("pt-BR", { style: "percent", maximumFractionDigits: 1 }).format(v); },
-    compact: function (v) { return new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 }).format(v); },
-    brlCompact: function (v) { return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", notation: "compact", maximumFractionDigits: 1 }).format(v); }
-  };
-
-  // axisLabels formats the five y-axis ticks in the unit the chart declared
-  // (percent, BRL or plain numbers), compact so long values never clip, with
-  // the fewest decimals that still print every tick exactly (1,5 mi, not 2 mi).
-  function axisLabels(format, ticks) {
-    function at(digits) {
-      var opts = { notation: "compact", maximumFractionDigits: digits };
-      if (format === "pct") opts = { style: "percent", maximumFractionDigits: digits };
-      else if (format === "brl") opts = { style: "currency", currency: "BRL", notation: "compact", maximumFractionDigits: digits };
-      var nf = new Intl.NumberFormat("pt-BR", opts);
-      return ticks.map(function (t) { return nf.format(t); });
-    }
-    for (var digits = 0; digits < 2; digits++) {
-      if (at(digits).join("|") === at(digits + 1).join("|")) return at(digits);
-    }
-    return at(2);
-  }
-
-  // yAxisPad formats the ticks and measures the left padding they need from
-  // the longest one; drawYAxis then draws the grid and the labels.
-  function yAxisPad(format, max) {
-    var labels = axisLabels(format, [0, max / 4, max / 2, (max * 3) / 4, max]);
-    var longest = labels.reduce(function (m, l) { return Math.max(m, l.length); }, 0);
-    return { labels: labels, padL: Math.max(40, Math.round(longest * 6.2) + 14) };
-  }
-  function drawYAxis(svg, axis, W, padR, padT, plotH) {
-    for (var g = 0; g <= 4; g++) {
-      var gy = padT + plotH - (plotH * g) / 4;
-      svg.appendChild(svgEl("line", { x1: axis.padL, y1: gy, x2: W - padR, y2: gy, stroke: "currentColor", "stroke-opacity": 0.08 }));
-      var lbl = svgEl("text", { x: axis.padL - 8, y: gy + 4, "text-anchor": "end", "font-size": 10, fill: mutedColor() });
-      lbl.textContent = axis.labels[g];
-      svg.appendChild(lbl);
-    }
-  }
-
-  // xLabelStep: show every k-th category label so labels never overlap, and
-  // always the last one (counted back from the end).
-  function xLabelStep(labels, step) {
-    var longest = labels.reduce(function (m, l) { return Math.max(m, String(l).length); }, 0);
-    return Math.max(1, Math.ceil((longest * 6.4 + 8) / Math.max(step, 1)));
-  }
-  function drawXLabel(svg, text, x, y, W, edgeGuard) {
-    var anchor = "middle";
-    var half = String(text).length * 3.2;
-    if (edgeGuard && x - half < 4) anchor = "start";
-    if (edgeGuard && x + half > W - 4) anchor = "end";
-    var tx = svgEl("text", { x: x, y: y, "text-anchor": anchor, "font-size": 11, fill: mutedColor() });
-    tx.textContent = text;
-    svg.appendChild(tx);
-  }
-  // categoryLines fits a bar's category name in its slot: one line, two lines
-  // split at a space, or cut with "…". A bar without its name can't be read, so
-  // categories are never skipped; null when the slot is too narrow for that.
-  function categoryLines(text, slot) {
-    var fit = Math.floor((slot - 6) / 6.4);
-    var s = String(text);
-    if (fit < 4) return null;
-    if (s.length <= fit) return [s];
-    var cut = function (t) { return t.length <= fit ? t : t.slice(0, fit - 1).trimEnd() + "…"; };
-    var best = -1;
-    for (var i = 0; i < s.length; i++) {
-      if (s[i] === " " && (best < 0 || Math.abs(s.length / 2 - i) < Math.abs(s.length / 2 - best))) best = i;
-    }
-    if (best < 0) return [cut(s)];
-    return [cut(s.slice(0, best)), cut(s.slice(best + 1))];
-  }
-  function legend(el, items) {
-    var box = document.createElement("div");
-    box.className = "chart-legend";
-    items.forEach(function (it) {
-      var row = document.createElement("span");
-      var dot = document.createElement("i");
-      dot.style.background = it.color;
-      row.appendChild(dot);
-      row.appendChild(document.createTextNode((it.label || "") + (it.value ? " " : "")));
-      if (it.value) {
-        var v = document.createElement("b");
-        v.textContent = it.value;
-        row.appendChild(v);
-      }
-      box.appendChild(row);
-    });
-    resolve(el).appendChild(box);
-  }
-  var seriesPalette = ["#1baf7a", "#eda100", "#e34948", "#4a3aa7", "#e87ba4", "#0ea5b7"];
-
-  // format accepts a function OR one of the fmt names ("num" | "brl" | "pct").
-  // A page's function may return nothing or throw: the chart prints its
-  // number instead of taking the rest of the page script down with it.
-  function coerceFormat(spec) {
-    if (typeof spec === "function") {
-      return function (v) {
-        try {
-          var out = spec(v);
-          return out == null ? "" : String(out);
-        } catch (e) {
-          return fmt.num(v);
-        }
-      };
-    }
-    if (typeof spec === "string" && fmt[spec]) return fmt[spec];
-    return function (v) { return fmt.num(v); };
-  }
-
-  function accent() {
-    return getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#2563eb";
-  }
-  function mutedColor() {
-    return getComputedStyle(document.documentElement).getPropertyValue("--text-muted").trim() || "#5b6472";
-  }
-  function svgEl(tag, attrs) {
-    var el = document.createElementNS("http://www.w3.org/2000/svg", tag);
-    for (var k in attrs) el.setAttribute(k, attrs[k]);
-    return el;
-  }
-  function frame(el, w, h) {
-    var svg = svgEl("svg", { viewBox: "0 0 " + w + " " + h, role: "img" });
-    el = resolve(el);
-    el.innerHTML = "";
-    el.appendChild(svg);
-    return svg;
-  }
-
-  // maxOf guards the axis scale: empty values would give -Infinity (truthy,
-  // so "|| 1" can't catch it) and a non-positive max would flip the chart.
-  // finite reads a chart value as a number, 0 when it is not one (NaN,
-  // Infinity, a stray string), so one bad value cannot blank the axis.
-  function finite(v) {
-    var n = +v;
-    return isFinite(n) ? n : 0;
-  }
-
-  function maxOf(values) {
-    var m = values.length ? Math.max.apply(null, values.map(finite)) : 0;
-    return m > 0 ? m : 1;
-  }
-
-  // labelsFor pads or trims the category names to the n points drawn: pages
-  // pass labels and values of different lengths, and one throw here loses
-  // every section the page renders after the chart.
-  function labelsFor(cfg, n) {
-    var out = [];
-    for (var i = 0; i < n; i++) out.push(cfg.labels && cfg.labels[i] != null ? String(cfg.labels[i]) : "");
-    return out;
-  }
-
-  // niceMax rounds the scale up so the four grid steps land on round values
-  // (1, 1.5, 2, 2.5, 3, 4, 5, 6 or 8 × 10^k) and the tick labels read exactly.
-  function niceMax(max) {
-    var raw = max / 4;
-    var mag = Math.pow(10, Math.floor(Math.log10(raw)));
-    var res = raw / mag;
-    var steps = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
-    var nice = steps.filter(function (s) { return s >= res - 1e-9; })[0];
-    return nice * mag * 4;
-  }
-
-  // bar(el, {labels:[], values:[], color?, format?}) — vertical bar chart.
-  function bar(el, cfg) {
-    var W = 640, H = 280, padB = 30, padT = 12, padR = 12;
-    var max = niceMax(maxOf(cfg.values));
-    var axis = yAxisPad(cfg.format, max);
-    var svg = frame(el, W, H);
-    var n = cfg.values.length;
-    var labels = labelsFor(cfg, n);
-    var plotW = W - axis.padL - padR;
-    var step = plotW / n, bw = Math.min(step * 0.62, 64);
-    var names = labels.map(function (l) { return categoryLines(l, step); });
-    var named = names.every(Boolean);
-    if (named && names.some(function (l) { return l.length > 1; })) padB = 42;
-    var plotH = H - padT - padB;
-    var color = cfg.color || accent();
-    var f = coerceFormat(cfg.format);
-    var every = xLabelStep(labels, step);
-    drawYAxis(svg, axis, W, padR, padT, plotH);
-    cfg.values.forEach(function (v, i) {
-      var bh = Math.max(0, (finite(v) / max) * plotH);
-      var x = axis.padL + i * step + (step - bw) / 2;
-      var y = padT + plotH - bh;
-      var r = svgEl("rect", { x: x, y: y, width: bw, height: bh, rx: 4, fill: (cfg.colors && cfg.colors[i]) || color });
-      var t = svgEl("title", {});
-      t.textContent = labels[i] + ": " + f(v);
-      r.appendChild(t);
-      svg.appendChild(r);
-      if (named) {
-        names[i].forEach(function (text, li) {
-          drawXLabel(svg, text, x + bw / 2, padT + plotH + 18 + li * 13, W, false);
-        });
-      } else if ((n - 1 - i) % every === 0) {
-        drawXLabel(svg, labels[i], x + bw / 2, H - 10, W, false);
-      }
-    });
-  }
-
-  // line(el, {labels:[], values:[] | series:[{label, values, color?}], color?, format?})
-  // — one line, or several series on one scale with a legend under the chart.
-  function line(el, cfg) {
-    var W = 640, H = 280, padB = 30, padT = 12, padR = 16;
-    var series = cfg.series && cfg.series.length
-      ? cfg.series
-      : [{ label: "", values: cfg.values || [], color: cfg.color }];
-    var all = [];
-    series.forEach(function (s) { all = all.concat(s.values || []); });
-    var max = niceMax(maxOf(all));
-    var axis = yAxisPad(cfg.format, max);
-    var svg = frame(el, W, H);
-    var n = series.reduce(function (m, s) { return Math.max(m, (s.values || []).length); }, 0);
-    var labels = labelsFor(cfg, n);
-    var plotW = W - axis.padL - padR, plotH = H - padT - padB;
-    var f = coerceFormat(cfg.format);
-    drawYAxis(svg, axis, W, padR, padT, plotH);
-    var xs = labels.map(function (_, i) { return axis.padL + (n === 1 ? plotW / 2 : (plotW * i) / (n - 1)); });
-    var every = xLabelStep(labels, n > 1 ? plotW / (n - 1) : plotW);
-    labels.forEach(function (label, i) {
-      if ((n - 1 - i) % every === 0) drawXLabel(svg, label, xs[i], H - 10, W, true);
-    });
-    var colors = series.map(function (s, si) {
-      return s.color || (si === 0 ? (cfg.color || accent()) : seriesPalette[(si - 1) % seriesPalette.length]);
-    });
-    series.forEach(function (s, si) {
-      var color = colors[si];
-      var pts = (s.values || []).map(function (v, i) { return [xs[i], padT + plotH - (finite(v) / max) * plotH]; });
-      var d = pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
-      svg.appendChild(svgEl("path", { d: d, fill: "none", stroke: color, "stroke-width": 2, "stroke-linejoin": "round" }));
-      pts.forEach(function (p, i) {
-        var c = svgEl("circle", { cx: p[0], cy: p[1], r: 3.5, fill: color });
-        var t = svgEl("title", {});
-        t.textContent = (s.label ? s.label + " · " : "") + labels[i] + ": " + f(s.values[i]);
-        c.appendChild(t);
-        svg.appendChild(c);
-      });
-    });
-    if (series.length > 1) {
-      legend(el, series.map(function (s, si) { return { label: s.label, color: colors[si] }; }));
-    }
-  }
-
-  // donut(el, {labels:[], values:[], colors?, format?, center?, centerLabel?, legend?})
-  // — donut with a short total in the centre (compact, in the declared unit)
-  // and, with legend: true, the labels and shares listed under it.
-  function donut(el, cfg) {
-    var W = 320, H = 280, cx = W / 2, cy = H / 2, R = 92, r = 58;
-    var svg = frame(el, W, H);
-    // At 100% of a wide container the donut outgrows the height pages give
-    // the box and spills over the next section: keep it at its own size.
-    svg.style.maxWidth = W + "px";
-    svg.style.margin = "0 auto";
-    var values = cfg.values.map(finite);
-    var labels = labelsFor(cfg, values.length);
-    var sum = values.reduce(function (a, b) { return a + b; }, 0);
-    var total = sum || 1;
-    var palette = cfg.colors || [accent()].concat(seriesPalette);
-    // The hover keeps the full value; the centre has room for a short one.
-    var full = coerceFormat(cfg.format);
-    var short = typeof cfg.format === "function" ? full : cfg.format === "brl" ? fmt.brlCompact : fmt.compact;
-    var a0 = -Math.PI / 2;
-    values.forEach(function (v, i) {
-      var a1 = a0 + (v / total) * Math.PI * 2;
-      var large = a1 - a0 > Math.PI ? 1 : 0;
-      var p = ["M", cx + R * Math.cos(a0), cy + R * Math.sin(a0),
-        "A", R, R, 0, large, 1, cx + R * Math.cos(a1), cy + R * Math.sin(a1),
-        "L", cx + r * Math.cos(a1), cy + r * Math.sin(a1),
-        "A", r, r, 0, large, 0, cx + r * Math.cos(a0), cy + r * Math.sin(a0), "Z"].join(" ");
-      var path = svgEl("path", { d: p, fill: palette[i % palette.length] });
-      var t = svgEl("title", {});
-      t.textContent = labels[i] + ": " + full(v) + " (" + fmt.pct(v / total) + ")";
-      path.appendChild(t);
-      svg.appendChild(path);
-      a0 = a1;
-    });
-    // A share chart has no total worth printing: without its own centre text
-    // the caption alone takes the middle.
-    var text = cfg.center != null ? String(cfg.center) : (cfg.format === "pct" ? "" : short(sum));
-    if (text) {
-      var size = text.length > 9 ? 14 : text.length > 7 ? 17 : 20;
-      var center = svgEl("text", { x: cx, y: cfg.centerLabel ? cy + 1 : cy + 6, "text-anchor": "middle", "font-size": size, "font-weight": 650, fill: "currentColor" });
-      center.textContent = text;
-      svg.appendChild(center);
-    }
-    if (cfg.centerLabel) {
-      var cap = svgEl("text", { x: cx, y: text ? cy + 19 : cy + 5, "text-anchor": "middle", "font-size": 11, fill: mutedColor() });
-      cap.textContent = cfg.centerLabel;
-      svg.appendChild(cap);
-    }
-    if (cfg.legend) {
-      legend(el, labels.map(function (label, i) {
-        return { label: label, color: palette[i % palette.length], value: fmt.pct(values[i] / total) };
-      }));
-    }
-  }
-
-  // ---- Page building blocks: what dashboards and small systems kept
-  // re-implementing — a searchable sortable table, a KPI row, tabs, toasts,
-  // dialogs, saved state and mock data. Every call is opt-in, so a page that
-  // brings its own versions keeps them.
-
-  function resolve(target) {
-    return typeof target === "string" ? document.querySelector(target) : target;
-  }
-
-  function node(tag, className, text) {
-    var el = document.createElement(tag);
-    if (className) el.className = className;
-    if (text != null) el.textContent = text;
-    return el;
-  }
-
-  function isNumberColumn(col) {
-    return col.align === "right" || col.format === "num" || col.format === "brl" || col.format === "pct";
-  }
-
-  function cellText(col, row) {
-    var value = row[col.key];
-    if (value == null) return "";
-    return col.format ? coerceFormat(col.format)(value) : String(value);
-  }
-
-  function compareValues(a, b) {
-    if (typeof a === "number" && typeof b === "number") return a - b;
-    return String(a == null ? "" : a).localeCompare(String(b == null ? "" : b), "pt-BR", { numeric: true });
-  }
-
-  // table(el, {columns, rows, search?, pageSize?, empty?, onRowClick?}) — a
-  // table.shell-table with sortable headers, an optional search box and
-  // pager. A column is {key, label, format?, align?, sortable? (true),
-  // render?(value, row) returning a Node or an HTML string — the page writes
-  // its cell templates as markup}. Plain values are always set as text.
-  // Returns {setRows, rows}.
-  function table(target, cfg) {
-    var root = resolve(target);
-    var cols = cfg.columns || [];
-    var pageSize = cfg.pageSize || 0;
-    var state = { rows: (cfg.rows || []).slice(), query: "", key: null, dir: 1, page: 0 };
-    root.innerHTML = "";
-    if (cfg.search) {
-      var search = node("input", "input skip-table-search");
-      search.type = "search";
-      search.placeholder = typeof cfg.search === "string" ? cfg.search : "Buscar…";
-      search.setAttribute("aria-label", search.placeholder);
-      search.addEventListener("input", function () {
-        state.query = search.value.trim().toLowerCase();
-        state.page = 0;
-        draw();
-      });
-      root.appendChild(search);
-    }
-    var tableEl = node("table", "shell-table");
-    var headRow = node("tr");
-    var heads = cols.map(function (col) {
-      var th = node("th", isNumberColumn(col) ? "num" : "", col.label == null ? col.key : col.label);
-      th.scope = "col";
-      if (col.sortable !== false) {
-        var toggle = function () {
-          state.dir = state.key === col.key ? -state.dir : 1;
-          state.key = col.key;
-          draw();
-        };
-        th.setAttribute("data-sort", col.key);
-        th.tabIndex = 0;
-        th.addEventListener("click", toggle);
-        th.addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-        });
-      }
-      headRow.appendChild(th);
-      return th;
-    });
-    var thead = node("thead");
-    var tbody = node("tbody");
-    var wrap = node("div", "skip-table-wrap");
-    var pager = node("div", "skip-pager");
-    thead.appendChild(headRow);
-    tableEl.appendChild(thead);
-    tableEl.appendChild(tbody);
-    wrap.appendChild(tableEl);
-    root.appendChild(wrap);
-    if (pageSize) root.appendChild(pager);
-
-    function visibleRows() {
-      var rows = state.rows;
-      if (state.query) {
-        rows = rows.filter(function (row) {
-          return cols.some(function (col) { return cellText(col, row).toLowerCase().indexOf(state.query) >= 0; });
-        });
-      }
-      if (state.key) {
-        var key = state.key, dir = state.dir;
-        rows = rows.slice().sort(function (a, b) { return dir * compareValues(a[key], b[key]); });
-      }
-      return rows;
-    }
-
-    function drawRow(row) {
-      var tr = node("tr");
-      cols.forEach(function (col) {
-        var td = node("td", isNumberColumn(col) ? "num" : "");
-        if (!col.render) {
-          td.textContent = cellText(col, row);
-        } else {
-          var content = col.render(row[col.key], row);
-          if (content instanceof Node) td.appendChild(content);
-          else td.innerHTML = content == null ? "" : String(content);
-        }
-        tr.appendChild(td);
-      });
-      // The row stays a row (no role) and takes focus, so a keyboard reaches
-      // the same action; keys pressed on a control inside a cell are its own.
-      if (cfg.onRowClick) {
-        tr.style.cursor = "pointer";
-        tr.tabIndex = 0;
-        tr.addEventListener("click", function () { cfg.onRowClick(row); });
-        tr.addEventListener("keydown", function (e) {
-          if (e.target !== tr || (e.key !== "Enter" && e.key !== " ")) return;
-          e.preventDefault();
-          cfg.onRowClick(row);
-        });
-      }
-      return tr;
-    }
-
-    function pagerButton(label, disabled, step) {
-      var button = node("button", "btn", label);
-      button.type = "button";
-      button.setAttribute("data-variant", "outline");
-      button.setAttribute("data-size", "sm");
-      button.disabled = disabled;
-      button.addEventListener("click", function () { state.page += step; draw(); });
-      return button;
-    }
-
-    function draw() {
-      var rows = visibleRows();
-      heads.forEach(function (th, i) {
-        if (cols[i].key === state.key) th.setAttribute("aria-sort", state.dir > 0 ? "ascending" : "descending");
-        else th.removeAttribute("aria-sort");
-      });
-      var pages = pageSize ? Math.max(1, Math.ceil(rows.length / pageSize)) : 1;
-      state.page = Math.min(state.page, pages - 1);
-      var shown = pageSize ? rows.slice(state.page * pageSize, (state.page + 1) * pageSize) : rows;
-      tbody.innerHTML = "";
-      if (!shown.length) {
-        var empty = node("td", "skip-table-empty", cfg.empty || "Nenhum registro encontrado.");
-        empty.colSpan = cols.length;
-        tbody.appendChild(node("tr")).appendChild(empty);
-      }
-      shown.forEach(function (row) { tbody.appendChild(drawRow(row)); });
-      if (!pageSize) return;
-      pager.innerHTML = "";
-      var from = rows.length ? state.page * pageSize + 1 : 0;
-      pager.appendChild(node("span", "", from + "–" + Math.min(rows.length, (state.page + 1) * pageSize) + " de " + rows.length));
-      var nav = node("div", "row gap-2");
-      nav.appendChild(pagerButton("Anterior", state.page === 0, -1));
-      nav.appendChild(pagerButton("Próxima", state.page >= pages - 1, 1));
-      pager.appendChild(nav);
-    }
-
-    draw();
-    return {
-      setRows: function (rows) { state.rows = rows.slice(); draw(); },
-      rows: visibleRows
-    };
-  }
-
-  // kpis(el, [{label, value, format?, delta?, hint?}]) — KPI cards in a
-  // responsive grid; delta is a fraction (0.12 renders as ▲ 12%).
-  function kpis(target, items) {
-    var root = resolve(target);
-    root.innerHTML = "";
-    root.classList.add("shell-grid");
-    items.forEach(function (item) {
-      var card = node("div", "panel kpi");
-      card.appendChild(node("span", "kpi-label", item.label));
-      // Large money values go compact ("R$ 27,5 mi"): the full amount does
-      // not fit a KPI card at four per row.
-      var kpiFormat = item.format === "brl" && Math.abs(item.value) >= 1e6 ? fmt.brlCompact : (item.format ? coerceFormat(item.format) : null);
-      card.appendChild(node("span", "kpi-value", kpiFormat ? kpiFormat(item.value) : String(item.value)));
-      if (typeof item.delta === "number") {
-        var up = item.delta >= 0;
-        card.appendChild(node("span", "kpi-delta " + (up ? "up" : "down"), (up ? "▲ " : "▼ ") + fmt.pct(Math.abs(item.delta))));
-      }
-      if (item.hint) card.appendChild(node("span", "kpi-label", item.hint));
-      root.appendChild(card);
-    });
-  }
-
-  // badge(text, variant?) — a .badge node for table cells and lists;
-  // variant is "secondary" | "outline" | "destructive" (default: primary).
-  function badge(text, variant) {
-    var el = node("span", "badge", text);
-    if (variant) el.setAttribute("data-variant", variant);
-    return el;
-  }
-
-  // tabs(el) — wires one .tabs block: [role=tab] buttons inside
-  // [role=tablist], each with aria-controls naming its [role=tabpanel].
-  function tabs(target) {
-    var root = resolve(target);
-    var buttons = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
-    function select(chosen) {
-      buttons.forEach(function (b) {
-        var on = b === chosen;
-        b.setAttribute("aria-selected", on ? "true" : "false");
-        b.tabIndex = on ? 0 : -1;
-        var panel = document.getElementById(b.getAttribute("aria-controls"));
-        if (panel) panel.hidden = !on;
-      });
-    }
-    buttons.forEach(function (b, i) {
-      b.addEventListener("click", function () { select(b); });
-      b.addEventListener("keydown", function (e) {
-        var step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-        if (!step) return;
-        var next = buttons[(i + step + buttons.length) % buttons.length];
-        next.focus();
-        select(next);
-      });
-    });
-    select(buttons.filter(function (b) { return b.getAttribute("aria-selected") === "true"; })[0] || buttons[0]);
-  }
-
-  // toast(message, {type?: "success" | "error", title?, duration?}) — a
-  // .toast in a shared .toaster at the bottom of the page.
-  function toast(message, opts) {
-    opts = opts || {};
-    var toaster = document.querySelector(".toaster") || document.body.appendChild(node("div", "toaster"));
-    var item = node("div", "toast");
-    item.setAttribute("role", opts.type === "error" ? "alert" : "status");
-    item.setAttribute("aria-hidden", "true");
-    if (opts.type) item.setAttribute("data-type", opts.type);
-    var content = node("div", "toast-content");
-    var section = node("section");
-    if (opts.title) section.appendChild(node("h2", "", opts.title));
-    section.appendChild(node("p", "", message));
-    content.appendChild(section);
-    item.appendChild(content);
-    toaster.appendChild(item);
-    requestAnimationFrame(function () { item.setAttribute("aria-hidden", "false"); });
-    setTimeout(function () {
-      item.setAttribute("aria-hidden", "true");
-      setTimeout(function () { item.remove(); }, 400);
-    }, opts.duration || 3000);
-  }
-
-  // Dialogs are native <dialog class="dialog">: a [data-dialog-open="id"]
-  // anywhere opens one, a [data-dialog-close] inside closes it, and a click on
-  // its backdrop closes it too. Plain dialog.showModal()/close() still work.
-  document.addEventListener("click", function (e) {
-    var target = e.target;
-    if (!(target instanceof Element)) return;
-    var opener = target.closest("[data-dialog-open]");
-    if (opener) {
-      var dialog = document.getElementById(opener.getAttribute("data-dialog-open"));
-      if (dialog && dialog.showModal && !dialog.open) dialog.showModal();
-      return;
-    }
-    var closer = target.closest("[data-dialog-close]");
-    if (closer && closer.closest("dialog")) {
-      closer.closest("dialog").close();
-      return;
-    }
-    if (target.tagName === "DIALOG" && target.classList.contains("dialog") && target.open) target.close();
-  });
-
-  // store(key, fallback) — JSON state in localStorage that never throws (a
-  // private window or a full quota falls back to memory): {get, set, update}.
-  function store(key, fallback) {
-    var memory;
-    // Set while the last write did not reach localStorage: what is stored
-    // there is older than memory until a write goes through again.
-    var unsaved = false;
-    var initial = function () { return fallback === undefined ? undefined : JSON.parse(JSON.stringify(fallback)); };
-    function get() {
-      if (!unsaved) {
-        try {
-          var raw = localStorage.getItem(key);
-          if (raw != null) return JSON.parse(raw);
-        } catch (e) { /* storage unavailable: memory below */ }
-      }
-      return memory !== undefined ? memory : initial();
-    }
-    function set(value) {
-      memory = value;
-      try {
-        localStorage.setItem(key, JSON.stringify(value));
-        unsaved = false;
-      } catch (e) {
-        unsaved = true;
-      }
-      return value;
-    }
-    return { get: get, set: set, update: function (fn) { return set(fn(get())); } };
-  }
-
-  // mock — seeded random data, so a page asks for 90 days of numbers in one
-  // line instead of writing them out; the same seed gives the same data.
-  var FIRST = ["Ana", "Bruno", "Carla", "Diego", "Eduarda", "Felipe", "Gabriela", "Henrique", "Isabela", "João",
-    "Larissa", "Marcos", "Natália", "Otávio", "Paula", "Rafael", "Sofia", "Thiago", "Vanessa", "Lucas"];
-  var LAST = ["Silva", "Santos", "Oliveira", "Souza", "Pereira", "Costa", "Rodrigues", "Almeida", "Nascimento", "Lima",
-    "Araújo", "Fernandes", "Carvalho", "Gomes", "Martins", "Rocha", "Ribeiro", "Barbosa"];
-  var INITIALS = "ABCDEFGHIJLMNOPRSTV".split("");
-  var CITIES = ["São Paulo, SP", "Rio de Janeiro, RJ", "Belo Horizonte, MG", "Curitiba, PR", "Porto Alegre, RS",
-    "Salvador, BA", "Recife, PE", "Fortaleza, CE", "Brasília, DF", "Goiânia, GO", "Campinas, SP", "Florianópolis, SC",
-    "Manaus, AM", "Belém, PA", "Vitória, ES", "Natal, RN"];
-
-  function createMock(seed) {
-    var state = seed >>> 0;
-    var names = 0;
-    function random() {
-      state = (state + 0x6d2b79f5) >>> 0;
-      var t = state;
-      t = Math.imul(t ^ (t >>> 15), t | 1);
-      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    }
-    function int(min, max) { return min + Math.floor(random() * (max - min + 1)); }
-    function pick(list) { return list[Math.floor(random() * list.length)]; }
-    var mock = {
-      seed: function (value) { state = value >>> 0; names = 0; return mock; },
-      random: random,
-      int: int,
-      float: function (min, max, decimals) {
-        var factor = Math.pow(10, decimals == null ? 2 : decimals);
-        return Math.round((min + random() * (max - min)) * factor) / factor;
-      },
-      pick: pick,
-      chance: function (p) { return random() < p; },
-      // There are 360 first/last pairs. A page that draws until the name is
-      // new (do { … } while (used.has(name))) froze the tab past them, so
-      // later draws widen the space: a second surname after 200 (6,480), a
-      // middle initial after 4,000.
-      name: function () {
-        names++;
-        var middle = names > 4000 ? pick(INITIALS) + ". " : "";
-        return pick(FIRST) + " " + middle + (names > 200 ? pick(LAST) + " " : "") + pick(LAST);
-      },
-      city: function () { return pick(CITIES); },
-      // series(n, {start, trend, noise, min, decimals}) — a walk: each value
-      // moves by trend (fraction per step) plus up to ±noise of itself.
-      series: function (n, opts) {
-        opts = opts || {};
-        var value = opts.start == null ? 100 : opts.start;
-        var factor = Math.pow(10, opts.decimals || 0);
-        var out = [];
-        for (var i = 0; i < n; i++) {
-          out.push(Math.max(opts.min == null ? 0 : opts.min, Math.round(value * factor) / factor));
-          value = value * (1 + (opts.trend || 0)) * (1 + (random() * 2 - 1) * (opts.noise == null ? 0.08 : opts.noise));
-        }
-        return out;
-      },
-      // dates(n, {end?, step?: "day" | "week" | "month"}) — ISO dates
-      // (YYYY-MM-DD), oldest first, ending at end (default: today).
-      dates: function (n, opts) {
-        opts = opts || {};
-        var end = opts.end ? new Date(opts.end) : new Date();
-        var out = [];
-        for (var i = n - 1; i >= 0; i--) {
-          var d = new Date(end.getTime());
-          if (opts.step === "month") d.setMonth(d.getMonth() - i);
-          else d.setDate(d.getDate() - i * (opts.step === "week" ? 7 : 1));
-          out.push(d.toISOString().slice(0, 10));
-        }
-        return out;
-      },
-      // rows(n, spec) — n objects; each spec value is a function(i), a list
-      // to pick from, or a constant.
-      rows: function (n, spec) {
-        var out = [];
-        for (var i = 0; i < n; i++) {
-          var row = {};
-          for (var key in spec) {
-            var value = spec[key];
-            row[key] = typeof value === "function" ? value(i) : Array.isArray(value) ? pick(value) : value;
-          }
-          out.push(row);
-        }
-        return out;
-      }
-    };
-    return mock;
-  }
-
-  window.skipShell = { fmt: fmt };
-  window.skipChart = { bar: bar, line: line, donut: donut };
-  window.skipUI = { table: table, kpis: kpis, badge: badge, tabs: tabs, toast: toast };
-  window.skipStore = store;
-  window.skipMock = createMock(20261022);
-})();
-
-</script>
-<style>
-:root {
-  --accent: #7d8f7d;
-  --accent-text: #4a5a4a;
-  --accent-contrast: #ffffff;
-  --cream: #fdfbf8;
-  --warm-white: #fdfbf8;
-  --lilac-deep: #6b5b7b;
-  --lilac-action: #5f4f6e;
-  --lilac-soft: #9b8aa8;
-  --lilac-gray: #8a8290;
-  --navy: #3d4a3d;
-  --plum: #6b5b7b;
-  --plum-soft: #9b8aa8;
-  --plum-muted: #8a8290;
-  --plum-deep: #5f4f6e;
-  --plum-deep-hover: #6b5b7b;
-  --sage: #6b5b7b;
-  --lilac: #a8b8a8;
-  --beige: #e8e3d9;
-  --beige-2: #f3efe8;
-  --card-img-bg: #ffffff;
-  --serif: 'Cardo', Georgia, serif;
-  --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
-  --line: #efe9e0;
-  --ease: 200ms ease;
+/* ---------- Section scaffolding ---------- */
+.section { max-width: 1240px; margin: 0 auto; padding: 96px 24px; }
+.section-head { max-width: 720px; }
+.section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.4rem); color: var(--navy); margin-top: 14px; }
+.section-head .section-sub { color: var(--muted); margin-top: 14px; line-height: 1.7; }
+.eyebrow-dark {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: #9A7E3F;
 }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+.eyebrow-dark::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+
+/* ---------- Catalog ---------- */
+.filters {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+  margin-top: 44px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  appearance: none; cursor: pointer;
+  background: transparent; border: 1px solid transparent; border-radius: 999px;
+  color: var(--muted); font-family: var(--sans);
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 9px 18px;
+  transition: color var(--ease), background var(--ease), border-color var(--ease);
+}
+.pill:hover { color: var(--navy); }
+.pill[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: var(--gold-light); }
+.count { font-size: 0.8125rem; color: var(--muted); letter-spacing: 0.02em; }
+.grid {
+  margin-top: 44px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px;
+}
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } .section { padding: 72px 20px; } }
+
+/* ---------- Product card ---------- */
+.product-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+  animation: fadeUp 0.6s both;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+.product-card[hidden] { display: none; }
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--gold);
+}
+.thumb { position: relative; aspect-ratio: 1 / 1; background: #F5F0E6; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.badge-hl {
+  position: absolute; top: 12px; left: 12px; z-index: 1;
+  background: var(--gold); color: #141D2B;
+  font-size: 0.625rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 6px 10px; border-radius: 2px;
+}
+.info { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.metal-chip {
+  align-self: flex-start;
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--navy); background: rgba(200, 168, 107, 0.14); border: 1px solid rgba(200, 168, 107, 0.4);
+  padding: 4px 10px; border-radius: 999px;
+}
+.name { font-size: 0.97rem; font-weight: 600; color: var(--navy-ink); line-height: 1.45; }
+.ref { font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+.price-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 10px; }
+.price {
+  font-size: 1.19rem; font-weight: 700; color: var(--navy);
+  font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+}
+.ask {
+  display: inline-flex; align-items: center; gap: 7px; flex: none;
+  font-size: 0.78rem; font-weight: 600; color: var(--navy);
+  border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px;
+  text-decoration: none;
+  transition: background var(--ease), color var(--ease), border-color var(--ease), transform var(--ease);
+}
+.ask svg { width: 14px; height: 14px; }
+.ask:hover { background: var(--wa); border-color: var(--wa); color: #fff; transform: scale(1.03); }
+
+/* ---------- Como comprar ---------- */
+.como {
+  background: radial-gradient(circle at 15% 85%, #16263D 0%, #0A1320 55%, #070E18 100%);
+  color: var(--ivory);
+  border-top: 1px solid rgba(200, 168, 107, 0.28);
+  border-bottom: 1px solid rgba(200, 168, 107, 0.28);
+}
+.como .eyebrow-dark { color: var(--gold-bright); }
+.como .section-head h2 { color: var(--ivory); }
+.como .section-head .section-sub { color: var(--muted-navy); }
+.steps {
+  margin-top: 52px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
+}
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; gap: 30px; } }
+.step { border-top: 1px solid rgba(200, 168, 107, 0.3); padding-top: 24px; }
+.step .num { font-family: var(--serif); font-size: 2.6rem; font-weight: 400; color: var(--gold-bright); line-height: 1; }
+.step h3 { font-size: 1.28rem; margin-top: 14px; color: var(--ivory); }
+.step p { color: var(--muted-navy); margin-top: 8px; font-size: 0.94rem; line-height: 1.7; }
+.wa-wrap { margin-top: 56px; display: flex; justify-content: center; }
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--wa); color: #fff; text-decoration: none;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em;
+  padding: 16px 34px; border-radius: 999px;
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+}
+.btn-wa:hover {
+  background: var(--wa-hover); transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+}
+.btn-wa svg { width: 20px; height: 20px; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: #070E18; color: var(--muted-navy); }
+.site-footer .inner {
+  max-width: 1240px; margin: 0 auto; padding: 36px 24px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px;
+}
+.brand-name { font-family: var(--serif); font-size: 1.15rem; color: var(--ivory); }
+.site-footer .tag { font-size: 0.8125rem; margin-top: 4px; }
+.wa-link {
+  font-size: 0.8125rem; font-weight: 600; color: var(--gold-light); text-decoration: none;
+  border-bottom: 1px solid rgba(200, 168, 107, 0.5); padding-bottom: 2px;
+  transition: color var(--ease), border-color var(--ease);
+}
+.wa-link:hover { color: var(--gold-bright); border-color: var(--gold-bright); }
+
+/* ---------- WhatsApp flutuante ---------- */
+.wa-float {
+  position: fixed; right: 22px; bottom: 22px; z-index: 60;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--wa); color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.38);
+  transition: transform var(--ease), background var(--ease);
+}
+.wa-float:hover { transform: translateY(-3px) scale(1.05); background: var(--wa-hover); }
+.wa-float svg { width: 26px; height: 26px; }
+
+/* ---------- Motion ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
-body {
-  font-family: var(--sans);
-  background: var(--cream);
-  color: var(--plum);
-  margin: 0;
-  line-height: 1.6;
-}
-h1, h2, h3, .serif { font-family: var(--serif); }
-
-/* NAV */
-.site-nav {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(253,251,248,.88);
-  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
-}
-.nav-inner {
-  max-width: 1200px; margin: 0 auto; padding: 10px 20px;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px;
-}
-.brand { font-family: var(--serif); font-size: 1.25rem; color: var(--plum); text-decoration: none; font-weight: 400; }
-.nav-links { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; margin: 0; padding: 0; }
-.nav-links a {
-  color: var(--plum); text-decoration: none; font-size: 0.875rem; font-weight: 500;
-  padding: 4px 2px; border-bottom: 2px solid transparent; transition: border-color var(--ease);
-}
-.nav-links a:hover, .nav-links a:focus-visible { color: var(--lilac-soft); border-bottom-color: var(--lilac-soft); outline: none; }
-.wa-small {
-  display: inline-flex; align-items: center; gap: 6px; background: var(--plum-deep); color: #fff;
-  text-decoration: none; font-size: 0.8125rem; font-weight: 500; padding: 8px 14px; border-radius: 999px;
-  transition: background var(--ease);
-}
-.wa-small:hover { background: var(--plum-deep-hover); }
-.wa-small:focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; }
-.wa-small svg { width: 16px; height: 16px; fill: #fff; }
-
-/* PROMO BANNER */
-.promo {
-  background: var(--lilac-deep); color: #ffffff; text-align: center; padding: 10px 20px;
-}
-.promo p { margin: 0; font-size: 0.8125rem; line-height: 1.5; }
-.promo strong { font-weight: 500; letter-spacing: 0.04em; }
-@media (min-width: 800px) { .promo p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
-
-/* COVER */
-.cover {
-  max-width: 1100px; margin: 0 auto; padding: 40px 20px 48px;
-  display: grid; grid-template-columns: 1fr; gap: 28px; align-items: center;
-}
-@media (min-width: 800px) { .cover { grid-template-columns: 1.3fr 1fr; gap: 56px; } }
-.logo-frame {
-  width: min(240px, 60vw); aspect-ratio: 1 / 1; margin: 0 auto;
-  border-radius: 50%; padding: 8px; border: 1px solid var(--line);
-  background: #fff;
-}
-.logo-frame img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: var(--beige); }
-.eyebrow-caps {
-  font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--plum-soft); margin: 0 0 12px; font-weight: 500;
-}
-.cover h1 { font-family: var(--serif); font-size: clamp(2.1rem, 4vw, 3rem); color: var(--plum); margin: 0 0 14px; line-height: 1.12; font-weight: 400; }
-.cover h1 span { display: block; font-size: 0.5em; font-style: italic; margin-top: 8px; color: var(--plum); opacity: .85; }
-.cover .desc { font-size: 1rem; color: var(--plum-muted); max-width: 480px; margin: 0 0 24px; }
-.btn-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--lilac-action); color: #fff; text-decoration: none;
-  padding: 12px 24px; border-radius: 999px; font-weight: 500; font-size: 0.9375rem;
-  transition: background var(--ease), transform var(--ease);
-}
-.btn-pill:hover { transform: translateY(-1px); background: var(--plum-deep-hover); }
-.btn-pill:focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; }
-
-/* SECTIONS */
-.section { padding: 56px 20px; }
-.section.alt { background: var(--beige-2); }
-.section.cream { background: var(--cream); }
-.section-inner { max-width: 1150px; margin: 0 auto; }
-.section-head { text-align: center; max-width: 640px; margin: 0 auto 32px; }
-.eyebrow {
-  display: inline-block; font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--plum-soft); margin-bottom: 10px; font-weight: 500;
-}
-.section-head h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--plum); margin: 0 0 8px; font-weight: 400; }
-.section-head p { color: var(--plum-muted); margin: 0; font-size: 0.975rem; }
-
-/* FEATURED */
-.featured {
-  display: grid; grid-template-columns: 1fr; gap: 0;
-  background: var(--beige); border-radius: 18px; overflow: hidden;
-  margin-bottom: 44px; box-shadow: 0 8px 26px rgba(74,90,74,.07);
-}
-@media (min-width: 720px) { .featured { grid-template-columns: 1.1fr 1fr; } }
-.featured-img { background: var(--card-img-bg); min-height: 300px; }
-.featured-img img { width: 100%; height: 100%; min-height: 300px; object-fit: contain; display: block; }
-.featured-body { padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
-.ref-tag { font-size: 0.8rem; letter-spacing: 0.1em; color: #a8a29a; text-transform: uppercase; font-weight: 500; }
-.featured-body h3 { font-family: var(--serif); font-size: 1.6rem; color: var(--plum); margin: 0; font-weight: 700; line-height: 1.25; }
-.price { font-family: var(--sans); font-size: 1.5rem; font-weight: 600; color: var(--lilac-deep); }
-.featured-body .note { font-size: 0.88rem; color: var(--plum-muted); margin: 0; }
-.featured-body .mini-btn {
-  align-self: flex-start; margin-top: 6px;
-  background: var(--lilac-action); color: #fff; border: 0; border-radius: 999px; padding: 10px 22px;
-  font-family: var(--sans); font-size: 0.92rem; cursor: pointer; transition: transform .2s ease, background .2s ease;
-}
-.featured-body .mini-btn:hover { transform: translateY(-2px); background: var(--plum-deep); }
-.featured-body .mini-btn:focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; }
-
-/* FILTERS */
-.filters-bar {
-  position: sticky; top: 53px; z-index: 40; background: var(--warm-white);
-  border-bottom: 1px solid var(--line);
-}
-.filters-inner {
-  max-width: 1150px; margin: 0 auto; padding: 12px 20px;
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
-}
-.pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill {
-  font: inherit; font-size: 0.875rem; font-weight: 500; color: var(--plum);
-  background: transparent; border: 1px solid var(--line); border-radius: 999px;
-  padding: 8px 16px; cursor: pointer; transition: background var(--ease), color var(--ease), border-color var(--ease);
-}
-.pill:hover { border-color: var(--sage); }
-.pill[aria-pressed="true"] { background: var(--lilac-action); color: #fff; border-color: var(--lilac-action); }
-.pill:focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; }
-.count { font-size: 0.8125rem; color: var(--plum-muted); margin: 0; white-space: nowrap; }
-
-/* GRID & CARDS */
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-@media (min-width: 720px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1000px) { .grid { grid-template-columns: repeat(4, 1fr); } }
-.product-card {
-  position: relative; background: #ffffff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
-  display: flex; flex-direction: column; box-shadow: none;
-  transition: transform var(--ease), box-shadow var(--ease);
-}
-.product-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(74,90,74,.08); }
-.product-card[hidden] { display: none; }
-.product-card .thumb {
-  position: relative; background: #ffffff; aspect-ratio: 1 / 1; overflow: hidden;
-  border-radius: 12px 12px 0 0; padding: 0;
-}
-.product-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.product-card .badge-hl {
-  position: absolute; top: 10px; left: 10px; z-index: 1;
-  background: var(--lilac-action); color: #fff; font-size: 0.625rem; letter-spacing: 0.16em;
-  text-transform: uppercase; padding: 4px 8px; border-radius: 4px; font-weight: 500;
-}
-.product-card .ask {
-  position: absolute; right: 10px; bottom: 10px; z-index: 1;
-  font-size: 0.75rem; font-weight: 500; color: var(--plum); text-decoration: none;
-  background: rgba(255,255,255,.88); padding: 6px 12px; border-radius: 999px;
-  opacity: 0; transition: opacity var(--ease), background var(--ease);
-}
-.product-card:hover .ask, .product-card:focus-within .ask { opacity: 1; }
-.product-card .ask:hover { background: #fff; }
-.product-card .ask:focus-visible { opacity: 1; outline: 2px solid var(--sage); outline-offset: 2px; }
-.product-card .info { padding: 16px; background: #ffffff; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; flex: 1; }
-.product-card .name {
-  font-family: var(--serif); font-size: 17px; color: var(--lilac-deep); margin: 0; font-weight: 400; line-height: 1.3;
-}
-.product-card .name.empty { opacity: .6; font-style: italic; }
-.product-card .ref { font-size: 11px; color: #a8a29a; letter-spacing: 0.04em; margin: 0; line-height: 1.4; }
-.product-card .price { font-size: 19px; font-weight: 600; color: var(--lilac-deep); margin-top: auto; padding-top: 8px; }
-@media (hover: none) {
-  .product-card .ask { opacity: 1; }
-}
-@media (max-width: 480px) {
-  .product-card .info { padding: 16px; }
-  .product-card .name { font-size: 0.9375rem; }
-  .product-card .price { font-size: 1.0625rem; }
-}
-
-/* HOW TO BUY */
-.steps { display: grid; grid-template-columns: 1fr; gap: 12px; }
-@media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
-.step {
-  background: #ffffff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px;
-}
-.step .num { font-family: var(--serif); font-size: 1.25rem; color: var(--lilac-soft); line-height: 1; }
-.step h3 { font-size: 1rem; color: var(--plum); margin: 8px 0 4px; font-weight: 500; }
-.step p { margin: 0; color: var(--plum-muted); font-size: 0.875rem; }
-.wa-wrap { text-align: center; margin-top: 28px; }
-.btn-wa {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--lilac-action); color: #fff; text-decoration: none;
-  padding: 14px 28px; border-radius: 999px; font-size: 0.975rem; font-weight: 500;
-  transition: background var(--ease);
-}
-.btn-wa:hover { background: var(--lilac-deep); }
-.btn-wa:focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; }
-.btn-wa svg { width: 20px; height: 20px; fill: #fff; }
-
-/* FLOAT WA */
-.wa-float {
-  position: fixed; right: 20px; bottom: 20px; z-index: 60;
-  width: 56px; height: 56px; border-radius: 50%; background: #25D366;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,.18); transition: transform var(--ease);
-}
-.wa-float:hover { transform: scale(1.06); }
-.wa-float:focus-visible { outline: 3px solid var(--sage); outline-offset: 3px; }
-.wa-float svg { width: 28px; height: 28px; fill: #fff; }
-.wa-float .tip {
-  position: absolute; right: 66px; top: 50%; transform: translateY(-50%);
-  background: var(--navy); color: #fff; font-size: 0.8125rem; padding: 6px 10px; border-radius: 6px;
-  white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity var(--ease);
-}
-.wa-float:hover .tip, .wa-float:focus-visible .tip { opacity: 1; }
-@media (max-width: 760px) { .wa-float .tip { display: none; } }
-
-/* FOOTER */
-.site-footer {
-  border-top: 1px solid var(--line); background: var(--warm-white); padding: 32px 20px;
-}
-.site-footer .inner {
-  max-width: 1150px; margin: 0 auto; display: flex; flex-wrap: wrap;
-  justify-content: space-between; align-items: center; gap: 12px 24px;
-}
-.site-footer .brand-name { font-family: var(--serif); font-size: 1.125rem; color: var(--lilac-deep); }
-.site-footer .tag { font-size: 0.8125rem; color: var(--plum-muted); margin: 0; }
-.site-footer a.wa-link { color: var(--lilac-deep); text-decoration: none; font-size: 0.875rem; font-weight: 500; border-bottom: 1px solid var(--lilac-soft); }
-.site-footer a.wa-link:hover { color: var(--lilac-soft); border-bottom-color: var(--lilac-soft); }
-.site-footer a.wa-link:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
 </style>
 </head>
 <body>
 
+<div class="promo" role="region" aria-label="Promoção de Natal">
+  <p><strong>Natal Steicy</strong> · A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos.</p>
+</div>
+
 <header class="site-nav">
   <div class="nav-inner">
-    <a class="brand" href="#inicio">Steicy Semi - Jóias</a>
+    <a class="brand" href="#inicio">Steicy Semi-Jóias</a>
     <ul class="nav-links">
       <li><a href="#catalogo">Catálogo</a></li>
       <li><a href="#como-comprar">Como comprar</a></li>
     </ul>
-    <a class="wa-small" href="https://wa.me/5551993614204" target="_blank" rel="noopener">
+    <a class="wa-small" data-testid="whatsapp-nav" href="https://wa.me/5551993614204" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
       WhatsApp
     </a>
   </div>
 </header>
 
-<div class="promo" role="region" aria-label="Promoção de Natal">
-  <p><strong>Natal Steicy</strong> · A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos.</p>
-</div>
-
-<section class="cover" id="inicio">
-  <div>
-    <p class="eyebrow-caps">Catálogo de semijoias</p>
-    <h1>Steicy Semi - Jóias<span>Revendedora Cristali</span></h1>
-    <p class="desc">Peças para descobrir com calma, escolher com carinho e tornar cada momento especial.</p>
-    <a class="btn-pill" href="#catalogo">Explorar o catálogo</a>
-  </div>
-  <div>
-    <div class="logo-frame">
-      <img src="imagens/logo.jpg" alt="Logo Steicy Semi - Jóias" onerror="imgFallback(this)">
-    </div>
-  </div>
-</section>
-
-<section class="section cream" id="catalogo">
-  <div class="section-inner">
-    <div class="section-head">
-      <span class="eyebrow">Coleção</span>
-      <h2>Catálogo</h2>
-    </div>
-
-    <div class="filters-bar" role="region" aria-label="Filtrar por categoria">
-      <div class="filters-inner">
-        <div class="pills" role="group" aria-label="Categorias">
-          <button class="pill" type="button" data-filter="all" aria-pressed="true">Todos</button>
-          <button class="pill" type="button" data-filter="brincos" aria-pressed="false">Brincos</button>
-          <button class="pill" type="button" data-filter="aneis" aria-pressed="false">Anéis</button>
-          <button class="pill" type="button" data-filter="pulseiras" aria-pressed="false">Pulseiras</button>
-          <button class="pill" type="button" data-filter="colares" aria-pressed="false">Colares</button>
-        </div>
-        <p class="count" id="count" aria-live="polite"></p>
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow">Catálogo de semijoias</p>
+      <h1>Steicy Semi-Jóias</h1>
+      <p class="subtitle">Revendedora Cristali</p>
+      <p class="tagline">Peças para descobrir com calma, escolher com carinho e tornar cada momento especial. Uma curadoria fina de semijoias em banho de ouro e prata 925.</p>
+      <div class="hero-ctas">
+        <a class="btn-hero" href="#catalogo">Explorar o catálogo</a>
+        <a class="btn-ghost" href="#como-comprar">Como comprar</a>
+      </div>
+      <div class="hero-meta">
+        <span>Banho de ouro</span>
+        <span>Prata 925</span>
+        <span>Curadoria Cristali</span>
       </div>
     </div>
-
-    <div class="grid" id="grid"></div>
+    <div>
+      <div class="logo-disc">
+        <img src="logo.png" alt="Logo Steicy Semi-Jóias" data-testid="brand-logo">
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section alt" id="como-comprar">
-  <div class="section-inner">
+<section class="section" id="catalogo">
+  <div class="section-head">
+    <span class="eyebrow-dark">Coleção exclusiva</span>
+    <h2>Catálogo</h2>
+    <p class="section-sub">Cada peça é escolhida com curadoria e sai direto do ateliê para você. Encontre a sua e finalize o atendimento pelo WhatsApp.</p>
+  </div>
+
+  <div class="filters" role="region" aria-label="Filtrar por categoria">
+    <div class="pills" role="group" aria-label="Categorias">
+      <button class="pill" type="button" data-filter="all" data-testid="filter-all" aria-pressed="true">Todos</button>
+      <button class="pill" type="button" data-filter="brincos" data-testid="filter-brincos" aria-pressed="false">Brincos</button>
+      <button class="pill" type="button" data-filter="aneis" data-testid="filter-aneis" aria-pressed="false">Anéis</button>
+      <button class="pill" type="button" data-filter="pulseiras" data-testid="filter-pulseiras" aria-pressed="false">Pulseiras</button>
+      <button class="pill" type="button" data-filter="colares" data-testid="filter-colares" aria-pressed="false">Colares</button>
+    </div>
+    <p class="count" id="count" aria-live="polite" data-testid="products-count"></p>
+  </div>
+
+  <div class="grid" id="grid" data-testid="catalog-grid"></div>
+</section>
+
+<section class="como" id="como-comprar" data-testid="como-comprar-section">
+  <div class="section">
     <div class="section-head">
-      <span class="eyebrow">Seu próximo passo</span>
+      <span class="eyebrow-dark">Seu próximo passo</span>
       <h2>Como comprar</h2>
-      <p>Anote a referência, envie uma mensagem e combinamos os detalhes pelo WhatsApp.</p>
+      <p class="section-sub">Anote a referência, envie uma mensagem e combinamos os detalhes pelo WhatsApp.</p>
     </div>
 
     <div class="steps">
@@ -1373,7 +401,7 @@ h1, h2, h3, .serif { font-family: var(--serif); }
     </div>
 
     <div class="wa-wrap">
-      <a class="btn-wa" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Vi%20o%20cat%C3%A1logo%20e%20gostaria%20de%20saber%20mais%20sobre%20uma%20pe%C3%A7a." target="_blank" rel="noopener">
+      <a class="btn-wa" data-testid="whatsapp-cta" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Vi%20o%20cat%C3%A1logo%20e%20gostaria%20de%20saber%20mais%20sobre%20uma%20pe%C3%A7a." target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.22 8.22 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 5.83 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
         Falar no WhatsApp
       </a>
@@ -1384,19 +412,20 @@ h1, h2, h3, .serif { font-family: var(--serif); }
 <footer class="site-footer">
   <div class="inner">
     <div>
-      <span class="brand-name">Steicy Semi - Jóias</span>
+      <span class="brand-name">Steicy Semi-Jóias</span>
       <p class="tag">Revendedora Cristali · Semijoias com banho de ouro e prata 925</p>
     </div>
-    <a class="wa-link" href="https://wa.me/5551993614204" target="_blank" rel="noopener">Fale no WhatsApp</a>
+    <a class="wa-link" data-testid="whatsapp-footer" href="https://wa.me/5551993614204" target="_blank" rel="noopener">Fale no WhatsApp</a>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Vi%20o%20cat%C3%A1logo%20e%20gostaria%20de%20saber%20mais%20sobre%20uma%20pe%C3%A7a" target="_blank" rel="noopener" aria-label="Fale com a Steicy no WhatsApp">
+<a class="wa-float" data-testid="whatsapp-float" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Vi%20o%20cat%C3%A1logo%20e%20gostaria%20de%20saber%20mais%20sobre%20uma%20pe%C3%A7a" target="_blank" rel="noopener" aria-label="Fale com a Steicy no WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
-  <span class="tip">Fale com a Steicy</span>
 </a>
 
 <script>
+const WA = 'https://wa.me/5551993614204';
+
 const PRODUCTS = [
   { cat: 'brincos', ref: '88293', name: 'Brinco duo oval amassado', metal: 'Banho de ouro', price: 99 },
   { cat: 'brincos', ref: '354878', name: 'Brinco delicado', metal: '', price: 99 },
@@ -1463,9 +492,7 @@ const PRODUCTS = [
   { cat: 'colares', ref: '83805', name: 'Gargantilha laço baguetes', metal: 'Banho de ouro', price: 109 },
   { cat: 'colares', ref: '84148', name: 'Gargantilha cinco trevos vermelhos', metal: 'Banho de ouro', price: 199 },
   { cat: 'colares', ref: '84666', name: 'Choker cobra achatada', metal: 'Banho de ouro', price: 199 },
-
   { cat: 'colares', ref: '84865', name: 'Gargantilha oval com pomba', metal: '', price: 149 },
-
   { cat: 'colares', ref: '86341', name: 'Gargantilha círculo com pomba', metal: '', price: 169 },
   { cat: 'colares', ref: '86968', name: 'Gargantilha círculo com cruz', metal: 'Banho de ouro', price: 169 },
   { cat: 'colares', ref: '87348', name: 'Gargantilha veneziana com pérolas', metal: '', price: 129 },
@@ -1476,44 +503,53 @@ const PRODUCTS = [
   { cat: 'colares', ref: '86833', name: 'Gargantilha quadrada com pedra', metal: 'Banho de ouro', price: 139 }
 ];
 
-const fmtBRL = (v) => 'R$ ' + v.toFixed(2).replace('.', ',');
-function imgFallback(img) {
-  if (img.dataset.tried === 'png' || img.dataset.tried === 'hidden') {
-    img.dataset.tried = 'hidden';
-    img.style.visibility = 'hidden';
-    return;
-  }
-  if (img.src.endsWith('.jpg')) {
-    img.dataset.tried = 'png';
-    img.src = img.src.replace(/\.jpg$/, '.png');
-  } else {
-    img.dataset.tried = 'hidden';
-    img.style.visibility = 'hidden';
-  }
-}
-window.imgFallback = imgFallback;
-const WA = 'https://wa.me/5551993614204';
+// Peças ainda sem foto (ref-<REF>.png). Quando a foto for adicionada ao
+// repositório, remova o REF desta lista e a peça volta ao catálogo.
+const WITHOUT_PHOTO = new Set([
+  '88293', '354878', '354759', '85580', '83620', '88243', '88260', '69071',
+  '82660', '88221', '88229', '88290', '88294', '864569', '85581', '88274'
+]);
+const AVAILABLE = PRODUCTS.filter(p => !WITHOUT_PHOTO.has(p.ref));
 
-function cardHTML(p) {
-  const meta = p.metal ? `${p.metal} · REF ${p.ref}` : `REF ${p.ref}`;
-  const waText = encodeURIComponent(`Olá Steicy! Tenho interesse na REF ${p.ref}.`);
-  const hl = p.hl ? '<span class="badge-hl">Destaque</span>' : '';
+const fmtBRL = (v) => 'R$ ' + v.toFixed(2).replace('.', ',');
+const waLink = (text) => WA + '?text=' + encodeURIComponent(text);
+
+function hideCard(img) {
+  const card = img.closest('.product-card');
+  if (card) card.remove();
+  setFilter(currentFilter);
+}
+window.hideCard = hideCard;
+
+function cardHTML(p, i) {
+  const hl = p.hl ? '<span class="badge-hl">Curadoria</span>' : '';
+  const chip = p.metal ? `<span class="metal-chip">${p.metal}</span>` : '';
+  const waText = `Olá Steicy! Tenho interesse na REF ${p.ref}.`;
   return `
-    <article class="product-card" data-cat="${p.cat}">
+    <article class="product-card" data-cat="${p.cat}" data-testid="product-card-${p.ref}" style="--i:${Math.min(i, 8)}">
       <div class="thumb">
         ${hl}
-        <img src="imagens/ref-${p.ref}.jpg" alt="${p.name} REF ${p.ref}" loading="lazy" onerror="imgFallback(this)">
-        <a class="ask" href="${WA}?text=${waText}" target="_blank" rel="noopener">Consultar</a>
+        <img src="ref-${p.ref}.png" alt="${p.name} — REF ${p.ref}" loading="lazy" onerror="hideCard(this)">
       </div>
       <div class="info">
+        ${chip}
         <p class="name">${p.name}</p>
-        <p class="ref">${meta}</p>
-        <span class="price">${fmtBRL(p.price)}</span>
+        <p class="ref" data-testid="product-ref-${p.ref}">REF ${p.ref}</p>
+        <div class="price-row">
+          <span class="price" data-testid="product-price-${p.ref}">${fmtBRL(p.price)}</span>
+          <a class="ask" data-testid="product-wa-btn-${p.ref}" href="${waLink(waText)}" target="_blank" rel="noopener" aria-label="Consultar a peça REF ${p.ref} no WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+            Consultar
+          </a>
+        </div>
       </div>
     </article>`;
 }
 
+let currentFilter = 'all';
+
 function setFilter(cat) {
+  currentFilter = cat;
   let n = 0;
   document.querySelectorAll('.product-card').forEach(card => {
     const show = cat === 'all' || card.dataset.cat === cat;
@@ -1523,11 +559,12 @@ function setFilter(cat) {
   document.querySelectorAll('.pill').forEach(b => {
     b.setAttribute('aria-pressed', String(b.dataset.filter === cat));
   });
-  document.getElementById('count').textContent = `${n} ${n === 1 ? 'peça' : 'peças'}`;
+  document.getElementById('count').textContent =
+    n === 1 ? 'Exibindo 1 peça exclusiva' : `Exibindo ${n} peças exclusivas`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('grid').innerHTML = PRODUCTS.map(cardHTML).join('');
+  document.getElementById('grid').innerHTML = AVAILABLE.map(cardHTML).join('');
   document.querySelectorAll('.pill').forEach(b => {
     b.addEventListener('click', () => setFilter(b.dataset.filter));
   });

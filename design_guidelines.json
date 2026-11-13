@@ -1,0 +1,162 @@
+{
+  "project_title": "Steicy Semi-Jóias — Redesign Exclusivo & Alto Ticket",
+  "archetype": "LUXURY & EDITORIAL (High-End Jewelry Catalog)",
+  "emotional_tone": "Exclusive, timeless, warm, artisanal, high-ticket prestige (Haute Joaillerie feel with Portuguese/Azulejo heritage harmony)",
+  "design_intent": "Elevate Steicy Semi-Jóias from a basic reseller catalog into a high-ticket boutique jewelry experience. The design seamlessly harmonizes with the 56 supplier card photos (1024x1024 warm cream ground, navy-blue azulejo borders, gold typography). We replace the lilac/green palette with an opulent palette of Deep Navy (#0c192c), Warm Ivory/Cream (#fcfaf6), Champagne Gold (#c8a86b), and Polished Onyx/Slate. We replace generic grids with an editorial asymmetrical gallery, refined serif headings (Playfair Display / Cormorant / Cardo), bespoke gold foil badges, elegant category filter tabs, high-contrast WhatsApp concierge CTAs, and quiet luxury transitions.",
+  "entry_surfaces": {
+    "/": "editorial luxury hero with subtle gold accent hairline, split storytelling header, brand crest badge, and curated high-ticket gallery preview"
+  },
+  "colors": {
+    "palette_name": "Royal Navy & Champagne Gold Luxury",
+    "surfaces": [
+      {
+        "name": "page",
+        "kind": "solid",
+        "bg": "#FCFAF6",
+        "on_bg": "#141D2B",
+        "on_bg_muted": "#5C6779",
+        "roles": {
+          "link": "#0C192C",
+          "error": "#991B1B",
+          "success": "#166534"
+        }
+      },
+      {
+        "name": "panel",
+        "kind": "solid",
+        "bg": "#FFFFFF",
+        "on_bg": "#141D2B",
+        "on_bg_muted": "#606D80",
+        "roles": {
+          "border": "#EAE5DB",
+          "badge_bg": "#0C192C",
+          "badge_text": "#F5E6CA"
+        }
+      },
+      {
+        "name": "promo_banner",
+        "kind": "solid",
+        "bg": "#0C192C",
+        "on_bg": "#FCFAF6",
+        "on_bg_muted": "#D6DFE8",
+        "roles": {
+          "gold_highlight": "#F0D7A7"
+        }
+      },
+      {
+        "name": "inverse",
+        "kind": "solid",
+        "bg": "#0A1320",
+        "on_bg": "#FCFAF6",
+        "on_bg_muted": "#A2B1C6",
+        "roles": {
+          "accent_gold": "#D4AF37",
+          "border": "#1E293B"
+        }
+      },
+      {
+        "name": "nav_crystal",
+        "kind": "glass",
+        "contrast_against": "#FFFFFF",
+        "guarantee": "backdrop-filter: blur(16px); background: rgba(252, 250, 246, 0.92); border-bottom: 1px solid #EAE5DB;",
+        "on_bg": "#0C192C",
+        "on_bg_muted": "#5C6779"
+      },
+      {
+        "name": "gold_badge",
+        "kind": "solid",
+        "bg": "#C8A86B",
+        "on_bg": "#141D2B",
+        "on_bg_muted": "#2C3440"
+      },
+      {
+        "name": "hero",
+        "kind": "gradient",
+        "contrast_against": "#0A1320",
+        "guarantee": "background: radial-gradient(circle at 80% 20%, #16263D 0%, #0C192C 60%, #070E18 100%);",
+        "on_bg": "#FCFAF6",
+        "on_bg_muted": "#BAC7D5",
+        "roles": {
+          "eyebrow_gold": "#D4AF37",
+          "link": "#F5E6CA"
+        }
+      }
+    ],
+    "accent": "#0C192C",
+    "on_accent": "#FFFFFF",
+    "gold_accent": "#C8A86B",
+    "gold_light": "#F5E6CA",
+    "whatsapp_green": "#25D366",
+    "whatsapp_hover": "#1EBE5D"
+  },
+  "typography": {
+    "google_fonts_link": "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
+    "font_heading": "'Playfair Display', Georgia, serif",
+    "font_body": "'Plus Jakarta Sans', system-ui, -apple-system, sans-serif",
+    "scale_px": {
+      "display": 52,
+      "h1": 42,
+      "h2": 32,
+      "h3": 22,
+      "body": 16,
+      "caption": 14
+    },
+    "rules": {
+      "headings": "Playfair Display, font-weight 400 or 600, tight tracking (tracking-tight), leading-tight",
+      "eyebrows": "Plus Jakarta Sans, uppercase, 11px-12px, letter-spacing 0.22em, font-weight 600, champagne gold or deep navy muted",
+      "body": "Plus Jakarta Sans, font-weight 400/500, line-height 1.6, tracking normal",
+      "prices": "Plus Jakarta Sans, font-weight 700, tabular numbers, deep navy #0C192C, prominent sizing"
+    }
+  },
+  "layout_and_grids": {
+    "max_width": "1240px",
+    "spacing_scale": "p-2 (8px), p-4 (16px), p-6 (24px), p-8 (32px), p-12 (48px), p-16 (64px), p-20 (80px), p-24 (96px)",
+    "catalog_grid": {
+      "desktop": "grid-template-columns: repeat(3, minmax(0, 1fr)) or repeat(4, minmax(0, 1fr)) with generous 28px-32px gap",
+      "tablet": "grid-template-columns: repeat(2, minmax(0, 1fr)) with 20px gap",
+      "mobile": "grid-template-columns: repeat(1, minmax(0, 1fr)) or repeat(2, minmax(0, 1fr)) with 16px gap"
+    },
+    "editorial_featured_hero": "Split 2-column showcase on desktop (1.2fr / 1fr), framing the curated piece in an architectural gold-lined card with concierge direct action"
+  },
+  "product_filter_requirements": {
+    "hidden_products_rule": "Hide the 16 products without photos upfront (refs: 88293, 354878, 354759, 85580, 83620, 88243, 88260, 69071, 82660, 88221, 88229, 88290, 88294, 864569, 85581, 88274). Only render the 55 available products with photo assets.",
+    "ignore_ref_87863": "Do not create product for unmatched photo ref-87863 as instructed by user.",
+    "active_count_display": "Display active filtered count dynamically: 'Exibindo X peças exclusivas'"
+  },
+  "card_treatment": {
+    "structure": "1:1 square photo container with 0px or subtle 4px inner inset, showcasing the supplier navy/cream frame, surrounded by crisp white card with 1px border (#EAE5DB), subtle ambient drop shadow on hover, gold/navy 'Curadoria / Destaque' chip, metal finish pill (Banho de Ouro 18k / Prata 925), and WhatsApp concierge link button"
+  },
+  "motion_and_interactions": {
+    "hover_states": "translateY(-4px) on product cards with soft diffused shadow (0 16px 36px rgba(12, 25, 44, 0.08)), smooth border color transition to #C8A86B",
+    "button_micro_interactions": "scale(1.02) on primary CTAs with subtle gold glow",
+    "reduced_motion": "@media (prefers-reduced-motion: reduce) { transition: none !important; animation: none !important; scroll-behavior: auto; }"
+  },
+  "accessibility": {
+    "contrast_ratio": "WCAG AA compliant (4.5:1 for body copy and 3.0:1 for large text across all surfaces)",
+    "data_testids": [
+      "whatsapp-nav",
+      "brand-logo",
+      "filter-all",
+      "filter-brincos",
+      "filter-aneis",
+      "filter-pulseiras",
+      "filter-colares",
+      "products-count",
+      "product-card",
+      "product-price",
+      "product-ref",
+      "product-wa-btn",
+      "como-comprar-section",
+      "whatsapp-float"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. Replace index.html with the complete redesigned single-file HTML/CSS/JS version.",
+    "2. Maintain zero-dependency static setup (served on port 3000 by frontend/server.js).",
+    "3. Load Google Fonts Playfair Display and Plus Jakarta Sans in <head>.",
+    "4. Upfront filter the PRODUCTS array to only include the 55 products that have corresponding ref-<REF>.png images (exclude the 16 items without photos).",
+    "5. Ensure all WhatsApp links point to https://wa.me/5551993614204 with Brazilian Portuguese pre-filled messages mentioning the exact REF code.",
+    "6. Keep the promo banner 'Natal Steicy · A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos.' with opulent navy and champagne gold styling.",
+    "7. Include all required data-testid attributes for testing verification."
+  ]
+}
