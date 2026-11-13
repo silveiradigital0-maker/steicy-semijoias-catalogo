@@ -51,14 +51,69 @@ a { color: inherit; }
 
 /* ---------- Promo banner ---------- */
 .promo {
-  background: var(--navy);
+  background: linear-gradient(90deg, #070E18 0%, #0C192C 45%, #16263D 100%);
   color: var(--ivory);
   text-align: center;
-  padding: 10px 20px;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(200, 168, 107, 0.35);
 }
-.promo p { font-size: 0.8125rem; line-height: 1.5; }
-.promo strong { color: var(--gold-light); font-weight: 600; letter-spacing: 0.04em; }
-@media (min-width: 800px) { .promo p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
+.promo p {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 6px 12px; font-size: 0.875rem; line-height: 1.5;
+}
+.promo .sparkle { width: 15px; height: 15px; fill: var(--gold-bright); flex: none; }
+.promo strong {
+  color: var(--gold-bright); font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; font-size: 0.8125rem;
+}
+.count-chip {
+  background: rgba(200, 168, 107, 0.16); border: 1px solid rgba(200, 168, 107, 0.5);
+  color: var(--gold-light); border-radius: 999px; padding: 3px 12px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+
+/* ---------- Selo da promoção no hero ---------- */
+.promo-ribbon {
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; margin-bottom: 22px;
+  border: 1px solid rgba(200, 168, 107, 0.5); background: rgba(200, 168, 107, 0.10);
+  color: var(--gold-light); border-radius: 999px; padding: 8px 16px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+  transition: background var(--ease), border-color var(--ease), transform var(--ease);
+}
+.promo-ribbon svg { width: 13px; height: 13px; fill: var(--gold-bright); flex: none; }
+.promo-ribbon b { color: var(--gold-bright); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.promo-ribbon:hover { background: rgba(200, 168, 107, 0.2); border-color: var(--gold-bright); transform: translateY(-2px); }
+
+/* ---------- Seção Natal Steicy ---------- */
+.natal-card {
+  border: 1px solid rgba(200, 168, 107, 0.4); border-radius: 8px;
+  background: radial-gradient(circle at 85% 15%, #16263D 0%, #0C192C 55%, #0A1320 100%);
+  color: var(--ivory);
+  padding: 56px 48px;
+  display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 48px; align-items: center;
+  box-shadow: 0 24px 60px rgba(12, 25, 44, 0.18);
+  position: relative; overflow: hidden;
+}
+.natal-eyebrow { color: var(--gold-bright); }
+.natal-card h2 { color: var(--ivory); font-size: clamp(2rem, 4vw, 2.8rem); margin-top: 14px; }
+.natal-sub { color: var(--muted-navy); margin-top: 12px; line-height: 1.7; }
+.natal-steps { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+.natal-steps li {
+  display: flex; gap: 12px; align-items: flex-start;
+  color: var(--muted-navy); font-size: 0.95rem; line-height: 1.65;
+}
+.natal-steps li::before { content: '✦'; color: var(--gold-bright); flex: none; line-height: 1.6; }
+.natal-steps b { color: var(--gold-light); font-weight: 600; }
+.natal-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 32px; }
+.count-chip.big { font-size: 0.8rem; padding: 8px 16px; }
+.natal-note { color: var(--muted-navy); font-size: 0.8rem; margin-top: 20px; }
+.natal-art svg { width: 100%; height: auto; display: block; }
+@media (max-width: 860px) {
+  .natal-card { grid-template-columns: 1fr; padding: 40px 24px; gap: 24px; }
+  .natal-art { display: none; }
+}
 
 /* ---------- Nav ---------- */
 .site-nav {
@@ -310,14 +365,21 @@ a { color: inherit; }
 </head>
 <body>
 
-<div class="promo" role="region" aria-label="Promoção de Natal">
-  <p><strong>Natal Steicy</strong> · A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos.</p>
+<div class="promo" role="region" aria-label="Promoção de Natal" data-testid="promo-banner">
+  <p>
+    <svg class="sparkle" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.2L20 10l-5.8 1.8L12 18l-2.2-6.2L4 10l5.8-1.8z"/></svg>
+    <strong>Natal Steicy</strong>
+    <span aria-hidden="true">·</span>
+    <span>A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos</span>
+    <span class="count-chip" id="promo-countdown" data-testid="promo-countdown" hidden></span>
+  </p>
 </div>
 
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="#inicio">Steicy Semi-Jóias</a>
     <ul class="nav-links">
+      <li><a href="#natal" data-testid="nav-natal">Promoção</a></li>
       <li><a href="#catalogo">Catálogo</a></li>
       <li><a href="#como-comprar">Como comprar</a></li>
     </ul>
@@ -331,6 +393,10 @@ a { color: inherit; }
 <section class="hero" id="inicio">
   <div class="hero-inner">
     <div>
+      <a class="promo-ribbon" data-testid="promo-ribbon" href="#natal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 6.2L20 10l-5.8 1.8L12 18l-2.2-6.2L4 10l5.8-1.8z"/></svg>
+        Promoção de Natal <b>· bilhete a cada R$ 100</b>
+      </a>
       <p class="eyebrow">Catálogo de semijoias</p>
       <h1>Steicy Semi-Jóias</h1>
       <p class="subtitle">Revendedora Cristali</p>
@@ -349,6 +415,42 @@ a { color: inherit; }
       <div class="logo-disc">
         <img src="logo.png" alt="Logo Steicy Semi-Jóias" data-testid="brand-logo">
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section natal" id="natal" data-testid="natal-section">
+  <div class="natal-card">
+    <div class="natal-text">
+      <span class="eyebrow-dark natal-eyebrow">Promoção de Natal</span>
+      <h2>Natal Steicy</h2>
+      <p class="natal-sub">Neste Natal, suas peças favoritas também viram presente para você.</p>
+      <ul class="natal-steps">
+        <li><span><b>A cada R$ 100,00</b> em compras, você ganha <b>1 bilhete</b> para concorrer.</span></li>
+        <li><span>Acumule bilhetes: cada R$ 100 em compras vale mais um bilhete.</span></li>
+        <li><span>O prêmio é um <b>conjunto de colar e brincos</b> da nossa coleção.</span></li>
+      </ul>
+      <div class="natal-ctas">
+        <a class="btn-wa" data-testid="natal-cta" href="https://wa.me/5551993614204?text=Ol%C3%A1%20Steicy!%20Quero%20participar%20da%20promo%C3%A7%C3%A3o%20Natal%20Steicy." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+          Quero meus bilhetes
+        </a>
+        <span class="count-chip big" id="natal-countdown" data-testid="natal-countdown" hidden></span>
+      </div>
+      <p class="natal-note">Fale com a Steicy no WhatsApp para todos os detalhes do sorteio.</p>
+    </div>
+    <div class="natal-art" aria-hidden="true">
+      <svg viewBox="0 0 220 200" fill="none" stroke="#C8A86B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="50" y="92" width="120" height="78" rx="6"/>
+        <rect x="40" y="66" width="140" height="28" rx="6"/>
+        <line x1="110" y1="66" x2="110" y2="170"/>
+        <path d="M110 66 C 92 60, 76 46, 85 34 C 94 25, 108 42, 110 66 Z" fill="rgba(200,168,107,.18)"/>
+        <path d="M110 66 C 128 60, 144 46, 135 34 C 126 25, 112 42, 110 66 Z" fill="rgba(200,168,107,.18)"/>
+        <circle cx="110" cy="63" r="4" fill="#C8A86B" stroke="none"/>
+        <path d="M32 36 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5 z" fill="rgba(200,168,107,.25)" stroke="none"/>
+        <path d="M186 52 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" fill="rgba(200,168,107,.25)" stroke="none"/>
+        <path d="M180 130 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 z" fill="rgba(200,168,107,.2)" stroke="none"/>
+      </svg>
     </div>
   </div>
 </section>
@@ -562,6 +664,21 @@ function setFilter(cat) {
   document.getElementById('count').textContent =
     n === 1 ? 'Exibindo 1 peça exclusiva' : `Exibindo ${n} peças exclusivas`;
 }
+
+// Contagem regressiva para o Natal (25/12) — chips da promoção.
+// Só aparece quando faltam 90 dias ou menos.
+(function natalCountdown() {
+  const now = new Date();
+  let target = new Date(now.getFullYear(), 11, 25);
+  if (now.getTime() > target.getTime()) target = new Date(now.getFullYear() + 1, 11, 25);
+  const days = Math.ceil((target.getTime() - now.getTime()) / 86400000);
+  if (days > 90) return;
+  const label = days === 0 ? 'É Natal!' : days === 1 ? 'Falta 1 dia para o Natal' : `Faltam ${days} dias para o Natal`;
+  ['promo-countdown', 'natal-countdown'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = label; el.hidden = false; }
+  });
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('grid').innerHTML = AVAILABLE.map(cardHTML).join('');

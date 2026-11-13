@@ -8,7 +8,7 @@ Positioning: ALTO TICKET / exclusivity — "Royal Navy & Champagne Gold" design 
 - Products WITHOUT a photo are HIDDEN (user decision): upfront-filtered via `WITHOUT_PHOTO` set (16 refs) in index.html. To re-list a piece: add `ref-<REF>.png` to the repo root and remove its REF from the set. Runtime safety: an image that 404s removes its own card and recounts.
 - Category filter pills (Todos/Brincos/Anéis/Pulseiras/Colares) + live count "Exibindo X peças exclusivas" (#count).
 - Ordering is off-site via WhatsApp deep links (wa.me/5551993614204) pre-filled with the product REF; nav button, per-card "Consultar", section CTA, footer link and floating button.
-- Promo banner: "Natal Steicy · A cada R$ 100,00 em compras, ganhe um bilhete para concorrer a um conjunto de colar e brincos."
+- Promo banner enriquecido (Natal Steicy): faixa superior navy/gold com sparkles + contagem regressiva "Faltam N dias para o Natal" (JS client-side, aparece só a ≤90 dias, some após 25/12), atalho "Promoção" no menu, selo dourado no hero e seção dedicada `#natal` (mecânica: 1 bilhete a cada R$ 100; prêmio: conjunto de colar e brincos; CTA WhatsApp "Quero meus bilhetes"). O ano do alvo é sempre o próximo 25/12.
 - `hl: true` products render a gold "Curadoria" badge (85516, 83620, 85098, 88274).
 - Photo ref-87863.png exists but has NO product entry (user said ignore for now).
 
